@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: excrt - CraZYali&#39;s BLOG</title>
+<title>标签: excrt - CraZYali's BLOG</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -14,10 +12,10 @@
 <link rel="icon" href="/images/code.png">
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+
+
 
 
     
@@ -29,35 +27,35 @@
     
     
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-    
-
-    
-    
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-
-    
-    
-    
-    
-
-<link rel="stylesheet" href="/css/back-to-top.css">
-
-
-    
-    
-
-    
     
     
     
 
     
     
-<link rel="stylesheet" href="/css/progressbar.css">
+
+
+
+
+    
+    
+    
+    
+
+
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
     
@@ -69,15 +67,15 @@
     
 
 
-<link rel="stylesheet" href="/css/style.css">
-</head>
+
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');loadCss('https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css');loadCss('https://use.fontawesome.com/releases/v5.4.1/css/all.css');loadCss('https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro');loadCss('https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css');loadCss('https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css');loadCss('https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css');loadCss('https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css');</script><noscript><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"></noscript></head>
 <body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali&#39;s BLOG" height="28">
+                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
             
             </a>
         </div>
@@ -165,13 +163,16 @@
             <p><a href="https://www.luogu.org/problemnew/show/P4777" target="_blank" rel="noopener">传送门</a><br>Orz <a href="https://huhaoo.github.io/2019/02/10/excrt" target="_blank" rel="noopener">小昊</a></p>
 <hr>
 <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>求同余方程组的最小非负整数解。<br>$$x\equiv a_i(mod\ b_i)$$</p>
-<p>&lt;! –more –&gt;</p>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>这个东西的关键是合并同余方程。<br>考虑两个方程：<br>$$x\equiv a_1(mod\ b_1)$$<br>$$x\equiv a_2(mod\ b_2)$$<br>则可以设：<br>$$x=k_1b_1+a_1=k_2b_2+a_2$$<br>推导一下：$$b_1k_1+b_2\times(-k_2)=a_2-a_1$$<br>那么这就成了一个exgcd的形式了，显然有解的充要条件是$a_2-a_1\mid gcd(b_1,b_2)$。<br>然后我们惊奇的发现，合并之后求出$k_1$，只要$x\equiv k_1b_1+a_1(mod\ lcm(b_1, b_2))$，就可以满足上面两个式子了。</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (int i = s; i &gt;= e; i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = min(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int __int128</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-function">T <span class="hljs-title">read</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	T ans = <span class="hljs-number">0</span>, p = <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">char</span> c = getchar();</span><br><span class="line">	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) p = <span class="hljs-number">-1</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	&#123;</span><br><span class="line">		ans = ans * <span class="hljs-number">10</span> + c - <span class="hljs-number">48</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> ans * p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) &#123;<span class="hljs-built_in">putchar</span>(<span class="hljs-string">'-'</span>);write(-x);<span class="hljs-keyword">return</span>;&#125;</span><br><span class="line">	<span class="hljs-keyword">if</span> (x / <span class="hljs-number">10</span>) write(x / <span class="hljs-number">10</span>);</span><br><span class="line">	<span class="hljs-built_in">putchar</span>(x % <span class="hljs-number">10</span> + <span class="hljs-string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, a1, b1, a2, b2, x;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">exgcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b, <span class="hljs-keyword">int</span> &amp;x, <span class="hljs-keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (!b)</span><br><span class="line">	&#123;</span><br><span class="line">		x = <span class="hljs-number">1</span>;</span><br><span class="line">		y = <span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">int</span> ans = exgcd(b, a % b, y, x);</span><br><span class="line">	y -= a / b * x;</span><br><span class="line">	<span class="hljs-keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"4777-new-new.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"4777-new-new.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-keyword">int</span> n = read&lt;<span class="hljs-keyword">int</span>&gt;(), b1 = read&lt;<span class="hljs-keyword">int</span>&gt;(), a1 = read&lt;<span class="hljs-keyword">int</span>&gt;(), lcm;</span><br><span class="line">	x = a1;</span><br><span class="line">	<span class="hljs-keyword">while</span> (--n)</span><br><span class="line">	&#123;</span><br><span class="line">		b2 = read&lt;<span class="hljs-keyword">int</span>&gt;();a2 = read&lt;<span class="hljs-keyword">int</span>&gt;();</span><br><span class="line">		<span class="hljs-keyword">int</span> k, temp, g(exgcd(b1, b2, k, temp));</span><br><span class="line">		k *= (a2 - a1) / g;</span><br><span class="line">		lcm = b1 * b2 / g;</span><br><span class="line">		x = a1 = (b1 * k + a1) % lcm;</span><br><span class="line">		b1 = lcm;</span><br><span class="line">	&#125;</span><br><span class="line">	write((x + lcm) % lcm);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/29/模板-exCRT/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -231,7 +232,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        29
                     </p>
                 </div>
             </div>
@@ -251,7 +252,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        26
+                        28
                     </p>
                 </div>
             </div>
@@ -280,7 +281,7 @@
             <li>
                 <a class="level is-mobile" href="https://qaq-am.com" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">老K&#39;s BLOG</span>
+                        <span class="level-item">老K's BLOG</span>
                     </span>
                     <span class="level-right">
                         <span class="level-item tag">qaq-am.com</span>
@@ -313,7 +314,7 @@
             <li>
                 <a class="level is-mobile" href="https://huhaoo.github.io/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">huhaoo&#39;s BLOG</span>
+                        <span class="level-item">huhaoo's BLOG</span>
                     </span>
                     <span class="level-right">
                         <span class="level-item tag">huhaoo.github.io</span>
@@ -358,7 +359,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">23</span>
+                <span class="level-item tag">24</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/题解/合集/">
@@ -380,7 +381,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT/" style="font-size: 13.33px;">FFT</a> <a href="/tags/Hash/" style="font-size: 11.67px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 11.67px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 15px;">主席树</a> <a href="/tags/倍增/" style="font-size: 11.67px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/套路/" style="font-size: 11.67px;">套路</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/容斥/" style="font-size: 10px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.67px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 11.67px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.67px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.67px;">斜率优化</a> <a href="/tags/树套树/" style="font-size: 16.67px;">树套树</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/高级数据结构/" style="font-size: 18.33px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.67px;">黑科技</a>
+        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT/" style="font-size: 13.33px;">FFT</a> <a href="/tags/Hash/" style="font-size: 11.67px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 11.67px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 15px;">主席树</a> <a href="/tags/倍增/" style="font-size: 11.67px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/坑/" style="font-size: 10px;">坑</a> <a href="/tags/套路/" style="font-size: 11.67px;">套路</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/容斥/" style="font-size: 10px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.67px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.67px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.67px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 10px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 16.67px;">树套树</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/高级数据结构/" style="font-size: 18.33px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.67px;">黑科技</a>
     </div>
 </div>
 
@@ -391,6 +392,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/24/Luogu-4074-WC2013-糖果公园/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Luogu 4074 [WC2013 糖果公园]">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-24T15:07:20.000Z">2019-07-24</time></div>
+                    <a href="/2019/07/24/Luogu-4074-WC2013-糖果公园/" class="has-link-black-ter is-size-6">Luogu 4074 [WC2013 糖果公园]</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -468,25 +488,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/07/21/胡闹-老园丁与小司机/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="胡闹 老园丁与小司机">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-21T14:51:53.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/胡闹-老园丁与小司机/" class="has-link-black-ter is-size-6">胡闹 老园丁与小司机</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -508,7 +509,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">16</span>
+                    <span class="level-item tag">17</span>
                 </span>
             </a>
         </li>
@@ -637,6 +638,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/坑/">
+                        <span class="tag">坑</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/套路/">
                         <span class="tag">套路</span>
                         <span class="tag is-grey">2</span>
@@ -674,7 +682,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/技巧/">
                         <span class="tag">技巧</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -689,6 +697,13 @@
                     <a class="tags has-addons" href="/tags/斜率优化/">
                         <span class="tag">斜率优化</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/树上莫队/">
+                        <span class="tag">树上莫队</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -760,12 +775,12 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali&#39;s BLOG" height="28">
+                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 CraZYali&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                © 2019 CraZYali&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &amp; <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
                 </p>
                 <p class="is-size-7">
@@ -828,15 +843,15 @@
     
     
     
-    <script src="/js/animation.js"></script>
+    
     
 
     
     
     
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer=""></script>
+    
     
 
     
@@ -846,25 +861,76 @@
     <h6>Your browser is out-of-date!</h6>
     <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
             my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer=""></script>
+
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer=""></script>
+
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer=""></script>
+    
+    
+
+    
+    
+    
+
+
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
         outdatedBrowser({
             bgColor: '#f25648',
             color: '#ffffff',
             lowerThan: 'flex'
         });
-    });
-</script>
-
-
-    
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+    });;document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
         'HTML-CSS': {
             matchFontHeight: false
@@ -882,56 +948,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         }
     });
-});
-</script>
-
-    
-    
-
-<a id="back-to-top" title="回到顶端" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/js/back-to-top.js" defer></script>
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-    <script src="/js/clipboard.js" defer></script>
-    
-
-    
-    
-    
-
-
-<script src="/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
+});;(function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
                 POSTS: '文章',
@@ -943,11 +960,4 @@ document.addEventListener('DOMContentLoaded', function () {
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/js/insight.js" defer></script>
-<link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css">
-    
-</body>
-</html>
+    })(window);</script></body></html>

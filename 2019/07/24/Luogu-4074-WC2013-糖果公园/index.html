@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: 可并堆 - CraZYali's BLOG</title>
+<title>Luogu 4074 [WC2013 糖果公园] - CraZYali's BLOG</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -75,7 +75,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="Luogu 4074 [WC2013 糖果公园]" height="28">
             
             </a>
         </div>
@@ -107,6 +107,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -121,23 +125,12 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">可并堆</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-21T14:51:53.000Z">2019-07-21</time>
+                <time class="level-item has-text-grey" datetime="2019-07-24T15:07:20.000Z">2019-07-24</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -147,7 +140,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 650 个字)
+                    6 分钟 读完 (大约 860 个字)
                 </span>
                 
                 
@@ -156,23 +149,43 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/21/胡闹-老园丁与小司机/">胡闹 老园丁与小司机</a>
+                Luogu 4074 [WC2013 糖果公园]
             
         </h1>
         <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>你是一个资本家，你的花园结构是一棵$n\le3\times10^5$个节点的树，有$m\le 3\times10^5$个无产阶级可以帮你标记路径，但只能是从一个节点到它的某一个祖先。</p>
-<p>雇佣某个无产阶级需要工资。你想知道让你的花园里面所有的边都被标记所需要支付的最小工资。</p>
-<p>如果全部雇佣也不够，你就会放 弃 思 考，认为需要$-1$的工资。</p>
+            <p><a href="https://www.luogu.org/problem/P4074" target="_blank" rel="noopener">传送门</a></p>
+<p>正确性什么的先咕咕咕一下吧，我也不太会。</p>
+<hr>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有一个$n\le10^5$个节点的树，每个节点有一个颜色。</p>
+<p>每次询问：<br>$$<br>\sum_cval_c\times\sum_{i=1}^{cnt}w_i<br>$$<br>$val_c$表示该颜色的价值</p>
+<p>$cnt$表示颜色出现的次数</p>
+<p>$w_i$表示该颜色出现$i$次后的价值</p>
+<p>带修改。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>可以考虑用括号序列把这棵树拍平。</p>
+<p>给出一个例子：</p>
+<p><img src="https://s2.ax1x.com/2019/07/24/eVLbnK.jpg" alt="原树"><br><img src="https://s2.ax1x.com/2019/07/24/eVL7X6.jpg" alt="拍成的括号序列"></p>
+<p>怎么操作呢？</p>
+<p>我们$dfs$的时候，第一次遇到的时候$push\_back$一次，回溯的时候也$push\_back$一次，记一下就好了。</p>
+<p>然后树上的问题就变成了区间的问题对吧。</p>
+<p>注意到如果一个点碰到了它的左括号又碰到了它的右括号，这个点就是莫得贡献的。就记一个$vis$每次翻转一下$flag$就好了。这个就可以跑莫队。</p>
+<p>什么带修改？加一维时间就行。</p>
+<p>什么莫队怎么分块？<del>玄学调参即可</del>一般情况开一个$\mathcal{O}(n^\frac{2}{3})$就行，总复杂度大概就是$\mathcal{O}(n^\frac{5}{3})$。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (int i = s; i &gt;= e; i--)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>, maxm = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>, maxq = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>, maxw = <span class="hljs-number">1e6</span> + <span class="hljs-number">10</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> bg[maxn], ne[maxn &lt;&lt; <span class="hljs-number">1</span>], to[maxn &lt;&lt; <span class="hljs-number">1</span>], e;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	e++;</span><br><span class="line">	to[e] = y;</span><br><span class="line">	ne[e] = bg[x];</span><br><span class="line">	bg[x] = e;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, q;</span><br><span class="line"><span class="hljs-keyword">int</span> v[maxm], w[maxn];</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> grand[maxn][<span class="hljs-number">20</span>], LOG, depth[maxn], dfn[maxn], low[maxn], cur;</span><br><span class="line"><span class="hljs-keyword">int</span> g[maxn &lt;&lt; <span class="hljs-number">1</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, LOG) grand[x][i] = grand[grand[x][i<span class="hljs-number">-1</span>]][i<span class="hljs-number">-1</span>];</span><br><span class="line">	g[dfn[x] = ++cur] = x;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = bg[x]; i ; i = ne[i])</span><br><span class="line">		<span class="hljs-keyword">if</span> (to[i] ^ grand[x][<span class="hljs-number">0</span>])</span><br><span class="line">		{</span><br><span class="line">			grand[to[i]][<span class="hljs-number">0</span>] = x;</span><br><span class="line">			depth[to[i]] = depth[x] + <span class="hljs-number">1</span>;</span><br><span class="line">			dfs(to[i]);</span><br><span class="line">		}</span><br><span class="line">	g[low[x] = ++cur] = x;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lca</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (x == y) <span class="hljs-keyword">return</span> x;</span><br><span class="line">	<span class="hljs-keyword">if</span> (dfn[x] &gt; dfn[y]) swap(x, y);</span><br><span class="line">	DREP(i, LOG, <span class="hljs-number">0</span>) <span class="hljs-keyword">if</span> (dfn[grand[y][i]] &gt; dfn[x]) y = grand[y][i];</span><br><span class="line">	<span class="hljs-keyword">return</span> grand[y][<span class="hljs-number">0</span>];</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">int</span> col[maxn], last[maxn];</span><br><span class="line"><span class="hljs-keyword">int</span> belong[maxn &lt;&lt; <span class="hljs-number">1</span>];</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">query</span></span></span><br><span class="line"><span class="hljs-class">{</span></span><br><span class="line">	<span class="hljs-keyword">int</span> l, r, t, id;</span><br><span class="line">	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt; (query b) <span class="hljs-keyword">const</span> {<span class="hljs-keyword">return</span> belong[l] &lt; belong[b.l] || belong[l] == belong[b.l] &amp;&amp; belong[r] &lt; belong[b.r] || belong[l] == belong[b.l] &amp;&amp; belong[r] == belong[b.r] &amp;&amp; t &lt; b.t;}</span><br><span class="line">}a[maxm], b[maxm];<span class="hljs-keyword">int</span> cnt1, cnt2;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">bool</span> vis[maxn &lt;&lt; <span class="hljs-number">1</span>];</span><br><span class="line"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> nowans, ans[maxm], cnt[maxw];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (vis[x])	nowans -= <span class="hljs-number">1l</span>l * v[col[x]] * w[cnt[col[x]]--];</span><br><span class="line">	<span class="hljs-keyword">else</span>		nowans += <span class="hljs-number">1l</span>l * v[col[x]] * w[++cnt[col[x]]];</span><br><span class="line">	vis[x] ^= <span class="hljs-number">1</span>;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (vis[x])</span><br><span class="line">	{</span><br><span class="line">		add(x);</span><br><span class="line">		col[x] = y;</span><br><span class="line">		add(x);</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">else</span> col[x] = y;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"4074.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"4074.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; q;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, m) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, v + i);</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, w + i);</span><br><span class="line">	REP(i, <span class="hljs-number">2</span>, n)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">int</span> x, y;</span><br><span class="line">		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;x, &amp;y);</span><br><span class="line">		add(x, y);add(y, x);</span><br><span class="line">	}</span><br><span class="line">	LOG = log2(n);</span><br><span class="line">	depth[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	dfs(<span class="hljs-number">1</span>);</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, col + i), last[i] = col[i];</span><br><span class="line">	<span class="hljs-keyword">int</span> block_siz = <span class="hljs-built_in">pow</span>(cur, <span class="hljs-number">2.</span> / <span class="hljs-number">3</span>);</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, cur) belong[i] = (i<span class="hljs-number">-1</span>) / block_siz;</span><br><span class="line">	<span class="hljs-keyword">while</span> (q--)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">int</span> opt, x, y;</span><br><span class="line">		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>, &amp;opt, &amp;x, &amp;y);</span><br><span class="line">		<span class="hljs-keyword">if</span> (!opt)</span><br><span class="line">		{</span><br><span class="line">			b[++cnt2] = (query){x, last[x], y};</span><br><span class="line">			last[x] = y;</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-keyword">else</span></span><br><span class="line">		{</span><br><span class="line">			<span class="hljs-keyword">if</span> (dfn[x] &gt; dfn[y]) swap(x, y);</span><br><span class="line">			a[++cnt1] = (query){lca(x, y) == x ? dfn[x] : low[x], dfn[y], cnt2, cnt1};</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	sort(a + <span class="hljs-number">1</span>, a + <span class="hljs-number">1</span> + cnt1);</span><br><span class="line">	int nowl(0), nowr(0), T(1);</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, cnt1)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">while</span> (T &lt;= a[i].t)</span><br><span class="line">		{</span><br><span class="line">			modify(b[T].l, b[T].t);</span><br><span class="line">			T++;</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-keyword">while</span> (T &gt; a[i].t)</span><br><span class="line">		{</span><br><span class="line">			modify(b[T].l, b[T].r);</span><br><span class="line">			T--;</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-keyword">while</span> (nowl &lt; a[i].l) add(g[nowl++]);</span><br><span class="line">		<span class="hljs-keyword">while</span> (nowl &gt; a[i].l) add(g[--nowl]);</span><br><span class="line">		<span class="hljs-keyword">while</span> (nowr &lt; a[i].r) add(g[++nowr]);</span><br><span class="line">		<span class="hljs-keyword">while</span> (nowr &gt; a[i].r) add(g[nowr--]);</span><br><span class="line">		int x(g[nowl]), y(g[nowr]), l(lca(x, y));</span><br><span class="line">		<span class="hljs-keyword">if</span> (x ^ l &amp;&amp; y ^ l)</span><br><span class="line">		{</span><br><span class="line">			add(l);</span><br><span class="line">			ans[a[i].id] = nowans;</span><br><span class="line">			add(l);</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-keyword">else</span> ans[a[i].id] = nowans;</span><br><span class="line">	}</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, cnt1) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>, ans[i]);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/21/胡闹-老园丁与小司机/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/坑/">坑</a>, <a class="has-link-grey -link" href="/tags/技巧/">技巧</a>, <a class="has-link-grey -link" href="/tags/树上莫队/">树上莫队</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -180,12 +193,63 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/24/胡闹-tree/">
+                <span class="level-item">胡闹 tree</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: 'QAQ'
+    });
+</script>
+
+    </div>
+</div>
 
 </div>
                 
@@ -267,6 +331,29 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -775,7 +862,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="Luogu 4074 [WC2013 糖果公园]" height="28">
                 
                 </a>
                 <p class="is-size-7">
