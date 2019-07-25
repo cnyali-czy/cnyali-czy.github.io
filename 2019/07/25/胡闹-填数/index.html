@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: lct - CraZYali's BLOG</title>
+<title>胡闹 填数 - CraZYali's BLOG</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -76,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="胡闹 填数" height="28">
             
             </a>
         </div>
@@ -108,6 +108,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -122,23 +126,12 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">lct</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-19T15:36:54.000Z">2019-07-19</time>
+                <time class="level-item has-text-grey" datetime="2019-07-25T15:12:57.000Z">2019-07-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -148,7 +141,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 872 个字)
+                    4 分钟 读完 (大约 579 个字)
                 </span>
                 
                 
@@ -157,22 +150,38 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/19/胡闹-一路畅通/">胡闹 一路畅通</a>
+                胡闹 填数
             
         </h1>
         <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你一个$n\le10^5$个点，$m\le2\times10^5$的无向图，每条边有一个权值$a_i&lt;2^{31}$。</p>
-<p>求一条从$S$点走到$T$的路径，这条路径上的边权最大值除以边权最小值应该全局最小，输出这个值。</p>
+            <p>这种题能做？</p>
+<p>我也就靠着重构$std$过活了。</p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你一个$n\times m$的矩阵要你填数。填的数范围为$[1,k]$。</p>
+<p>问你本质不同的方案有多少。本质不同定义为任意交换行列后无法全同。</p>
+<h2 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h2><p>时限$4s$</p>
+<p>$1\le n,m\le45,1\le k\le10^9$</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p><strong>一看就是我不会的题。</strong></p>
+<p>考虑一下$Brunside$引理（其实大概是$polya$?)。直接随便整数划分枚举行列置换的循环长度，这个复杂度大概是$\mathcal{O(B_nB_m\times n\times m)}$的。</p>
+<p>这个复杂度不太行，大概只能卡过$n,m\le20$的数据。</p>
+<p>怎么优化呢？</p>
+<p>我们发现如果我们枚举了行的整数划分，我们其实不用管列的具体情况，只要管一管它的贡献和。</p>
+<p>具体来说可以把每个循环长度的贡献全部搞起来$dp$，发现这是一个背包的形式，卡卡常就能低空飞过了。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//modify</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (register int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (register int i = s; i &gt;= e; i--)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> N = <span class="hljs-number">150</span>, maxn = N + <span class="hljs-number">10</span>, MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">power_pow</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">1</span>, base = a;</span><br><span class="line">	<span class="hljs-keyword">while</span> (b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) ans = ans * base % MOD;</span><br><span class="line">		base = base * base % MOD;</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inv(x) power_pow(x, MOD-2)</span></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, k;</span><br><span class="line"><span class="hljs-keyword">int</span> fac[maxn], Inv[maxn], single[maxn], bin[maxn], dp[maxn];</span><br><span class="line"><span class="hljs-keyword">int</span> v[maxn], p;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">int</span> n = p;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, m) dp[i] = <span class="hljs-number">0</span>;</span><br><span class="line">	dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, m)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> coef = single[i];</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, n) coef = coef * bin[__gcd(v[j], i)] % MOD;</span><br><span class="line">		DREP(j, m, <span class="hljs-number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> cur = coef;</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">1</span>; j + i * k &lt;= m; k++)</span><br><span class="line">			{</span><br><span class="line">				dp[j + i * k] = (dp[j + i * k] + dp[j] * cur % MOD * Inv[k]) % MOD;</span><br><span class="line">				cur = cur * coef % MOD;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">int</span> ans = dp[m], cnt = <span class="hljs-number">0</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">	{</span><br><span class="line">		ans = ans * <span class="hljs-number">1l</span>l * single[v[i]] % MOD;</span><br><span class="line">		<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">1</span> &amp;&amp; v[i] ^ v[i - <span class="hljs-number">1</span>])</span><br><span class="line">		{</span><br><span class="line">			ans = ans * <span class="hljs-number">1l</span>l * Inv[cnt] % MOD;</span><br><span class="line">			cnt = <span class="hljs-number">0</span>;</span><br><span class="line">		}</span><br><span class="line">		cnt++;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> ans * <span class="hljs-number">1l</span>l * Inv[cnt] % MOD;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> less, <span class="hljs-keyword">int</span> last)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (!less) <span class="hljs-keyword">return</span> calc();</span><br><span class="line">	<span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;</span><br><span class="line">	DREP(i, min(less, last), <span class="hljs-number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		res = (<span class="hljs-number">0l</span>l + res + dfs(less - i, v[++p] = i)) % MOD;</span><br><span class="line">		--p;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> res;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"A.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"A.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; k;</span><br><span class="line">	fac[<span class="hljs-number">0</span>] = Inv[<span class="hljs-number">0</span>] = bin[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, N)</span><br><span class="line">	{</span><br><span class="line">		fac[i] = <span class="hljs-number">1l</span>l * fac[i - <span class="hljs-number">1</span>] * i % MOD;</span><br><span class="line">		single[i] = power_pow(i, MOD - <span class="hljs-number">2</span>);</span><br><span class="line">		bin[i] = <span class="hljs-number">1l</span>l * bin[i - <span class="hljs-number">1</span>] * k % MOD;</span><br><span class="line">	}</span><br><span class="line">	Inv[N] = inv(fac[N]);</span><br><span class="line">	DREP(i, N<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>) Inv[i] = <span class="hljs-number">1l</span>l * Inv[i+<span class="hljs-number">1</span>] * (i+<span class="hljs-number">1</span>) % MOD;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; dfs(n, n) &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	<span class="hljs-built_in">cerr</span>&lt;&lt;clock()*<span class="hljs-number">1.</span>/CLOCKS_PER_SEC&lt;&lt;<span class="hljs-built_in">endl</span>;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/19/胡闹-一路畅通/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/WO-YE-BU-HUI/">WO YE BU HUI</a>, <a class="has-link-grey -link" href="/tags/毒瘤计数/">毒瘤计数</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -180,12 +189,70 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/25/胡闹-回文/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">胡闹 回文</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/24/Luogu-4074-WC2013-糖果公园/">
+                <span class="level-item">Luogu 4074 [WC2013 糖果公园]</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: 'QAQ'
+    });
+</script>
+
+    </div>
+</div>
 
 </div>
                 
@@ -267,6 +334,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Notice">
+        <span class="has-mr-6">1.1</span>
+        <span>Notice</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -782,7 +876,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="胡闹 填数" height="28">
                 
                 </a>
                 <p class="is-size-7">
