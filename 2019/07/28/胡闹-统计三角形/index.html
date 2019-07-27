@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: 高级数据结构 - CraZYali's BLOG</title>
+<title>胡闹 统计三角形 - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="胡闹 统计三角形" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -124,518 +128,126 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-27T16:19:31.000Z">2019-07-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 664 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                胡闹 统计三角形
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你平面上$n\le3000$个点，每个点有一个颜色$c_i\in[0,2]$。</p>
+<p>定义一个三角形是好的，当且仅当这个三角形的三个定点颜色不同。</p>
+<p>定义一对三角形是好的，当且仅当这两个三角形是好的其这两个三角形没有交集。</p>
+<p>为了避免歧义，保证点的坐标互不相同。</p>
+<p>统计好的三角形对有多少。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>首先，两个三角形没有交集的的充要条件是这两个三角形之间存在两条内公切线。</p>
+<p>那么我们就可以枚举内公切线。</p>
+<p>这条直线会把平面分成两个部分，然后有贡献的点对一定一个在这条直线左边，一个在这条直线右边。</p>
+<p>那我们可以先枚举一个点，然后把其他的点做极角排序。极角排序用向量比较麻烦，那就直接三角函数吧。</p>
+<p>按照这样的顺序枚举两个点来枚举内公切线，就可以保证每次都只会把一个点从一边丢到另一边去。</p>
+<p>统计的时候大力讨论一下颜色就可以了。</p>
+<h2 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h2><p>值得注意的是，如果管坐标大小直接随便搞，答案会是真正的答案的$4$倍，要记得把这个东西搞掉。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">3000</span> + <span class="hljs-number">10</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1</span>), inf = <span class="hljs-number">1e20</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans;</span><br><span class="line"><span class="hljs-keyword">int</span> cnt[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];</span><br><span class="line"><span class="hljs-comment">//cnt[0/1][x] 分割线左右的cnt</span></span><br><span class="line"><span class="hljs-keyword">bool</span> app[maxn];</span><br><span class="line"><span class="hljs-comment">//被搞过去几次</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span></span></span><br><span class="line"><span class="hljs-class">{</span></span><br><span class="line">	<span class="hljs-keyword">int</span> x, y, c, id;</span><br><span class="line">	<span class="hljs-keyword">double</span> k;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt; (point B) <span class="hljs-keyword">const</span> {<span class="hljs-keyword">return</span> k &lt; B.k;}<span class="hljs-comment">//极角排序</span></span><br><span class="line">}P[maxn], p[maxn], O;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"B.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"B.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>, &amp;P[i].x, &amp;P[i].y, &amp;P[i].c), P[i].id = i;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> tmp;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">	{</span><br><span class="line">		O = P[i];</span><br><span class="line">		<span class="hljs-keyword">int</span> k = O.c;</span><br><span class="line">		copy(P + <span class="hljs-number">1</span>, P + <span class="hljs-number">1</span> + n, p + <span class="hljs-number">1</span>);</span><br><span class="line">		<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cur</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, n)</span><br><span class="line">			<span class="hljs-keyword">if</span> (i ^ p[j].id)</span><br><span class="line">			{</span><br><span class="line">				p[++cur]=p[j];</span><br><span class="line">				p[cur].k = <span class="hljs-built_in">atan2</span>(p[cur].y - O.y, p[cur].x - O.x);</span><br><span class="line">				<span class="hljs-keyword">if</span> (p[cur].k &lt;= <span class="hljs-number">0</span>) p[cur].k += pi;</span><br><span class="line">			}</span><br><span class="line">		sort(p + <span class="hljs-number">1</span>, p + n);</span><br><span class="line">		<span class="hljs-built_in">memset</span>(cnt, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(cnt));</span><br><span class="line">		<span class="hljs-built_in">memset</span>(app, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(app));</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, cur)</span><br><span class="line">			<span class="hljs-keyword">if</span> (p[j].y &lt; O.y || p[j].y == O.y &amp;&amp; p[j].x &gt; O.x) ++cnt[<span class="hljs-number">0</span>][p[j].c];<span class="hljs-comment">//一开始下面</span></span><br><span class="line">			<span class="hljs-keyword">else</span> ++cnt[<span class="hljs-number">1</span>][p[j].c], app[j] = <span class="hljs-number">1</span>;</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, cur)</span><br><span class="line">		{</span><br><span class="line">			--cnt[app[j]][p[j].c];</span><br><span class="line">			tmp = <span class="hljs-number">1l</span>l * (k ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * (p[j].c ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>);<span class="hljs-comment">//大力统计颜色</span></span><br><span class="line">			ans += tmp;</span><br><span class="line">			tmp = <span class="hljs-number">1l</span>l * (k ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * (p[j].c ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>);</span><br><span class="line">			ans += tmp;</span><br><span class="line">			++cnt[app[j] ^= <span class="hljs-number">1</span>][p[j].c];</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; ans / <span class="hljs-number">4</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/胡闹系列/">胡闹系列</a>, <a class="has-link-grey -link" href="/tags/计算几何/">计算几何</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">高级数据结构</a></li>
-        </ul>
-        </nav>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://s2.ax1x.com/2019/07/27/eK3T2V.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
     </div>
 </div>
 
-    <div class="card">
-    
-    <div class="card-content article ">
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-19T15:36:54.000Z">2019-07-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 872 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/27/口胡-最小K覆盖圆/">
+                <span class="level-item">口胡 最小K覆盖圆</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/19/胡闹-一路畅通/">胡闹 一路畅通</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你一个$n\le10^5$个点，$m\le2\times10^5$的无向图，每条边有一个权值$a_i&lt;2^{31}$。</p>
-<p>求一条从$S$点走到$T$的路径，这条路径上的边权最大值除以边权最小值应该全局最小，输出这个值。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/19/胡闹-一路畅通/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
 
 
 
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-16T15:18:25.000Z">2019-07-16</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 988 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/16/胡闹-多重集合问题/">胡闹 多重集合问题</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>维护一颗树，兹磁以下操作：</p>
-<ol>
-<li>向以$v$为根的子树的所有节点各插入$k$个数$z$（相当于每个节点存了一些数）</li>
-<li>询问某个节点$v$中有多少个数$x\ xor\ y\le z$，其中$y,z$是给出的</li>
-<li>把整棵树的根换成某一个节点$v$</li>
-</ol>
-<p>$n,m\le 140000$</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/16/胡闹-多重集合问题/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-07T12:37:25.000Z">2019-07-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/模板/">模板</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 578 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/07/模板-三维偏序/">模板 三维偏序</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.luogu.org/problemnew/show/P3810" target="_blank" rel="noopener">传送门</a></p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>空间内有$n$个点$(x_i,y_i,z_i)$。<br>定义$f(i)=\sum_{j=1}^n [x_j\le x_i, y_j\le x_j, z_j\le z_i, i \not=j]$。<br>求$f(i),i\in[0,n)$。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/07/模板-三维偏序/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-07T12:29:36.000Z">2019-07-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 979 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/07/Luogu-2042-NOI2005-维护数列/">Luogu 2042 [NOI2005 维护数列]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.luogu.org/problemnew/show/P2042" target="_blank" rel="noopener">传送门</a><br>工业题，爽歪歪。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p><img src="https://cdn.luogu.org/upload/pic/1114.png" alt="statement"></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/07/Luogu-2042-NOI2005-维护数列/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-02T00:52:46.000Z">2019-07-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1203 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/02/Luogu-4197-ONTAK2010-Peaks/">Luogu 4197 [ONTAK2010 Peaks]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.luogu.org/problemnew/show/P4197" target="_blank" rel="noopener">传送门</a><br>垃圾BZOJ，又过不了我的大常数。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你一个$N\le 10^5$个点$M\le 5\times 10^5$条边的无向图，每条边有边权，每个点有点权。<br>每次给你一组$v,x,k$，询问从$v$开始经过不超过$x$的路可以走到的所有点中的第$k$大。<br>无解输出$-1$。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/02/Luogu-4197-ONTAK2010-Peaks/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-23T07:31:05.000Z">2019-03-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 603 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/23/Luogu-3157/">Luogu 3157 [CQOI2011 动态逆序对]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.luogu.org/problemnew/show/P3157" target="_blank" rel="noopener">传送门</a><br><strong>垃圾BZOJ</strong>，硬是过不了我的大常数。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给出一个$1$到$n$的排列$P$，依次删除$m$个数，问每次删除前整个序列的逆序对数。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/23/Luogu-3157/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-22T02:11:01.000Z">2019-03-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 948 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/22/BZOJ-1901（动态区间第K小）/">BZOJ 1901（动态区间第K小）</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1901" target="_blank" rel="noopener">传送门</a><br>树套树什么的真的头晕死了。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你一个序列$a_{i\in [1,n]}$，要求单点修改，区间询问第$k$小值。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/22/BZOJ-1901（动态区间第K小）/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-21T00:39:59.000Z">2019-03-21</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/模板/">模板</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 791 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/21/模板-静态区间第K小（主席树）/">模板 静态区间第K小（主席树）</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="" https:="" www.luogu.org="" problemnew="" show="" p3834""="">传送门</a><br>啊，推了一晚上，大概搞定了吧。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个序列$a_{k\in [1,n]}$，$q$次询问，每次询问$[l,r]$中第$K$小的数。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/21/模板-静态区间第K小（主席树）/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-18T08:09:49.000Z">2019-03-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1168 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/18/BZOJ-3110/">BZOJ 3110 [ZJOI2013 K大数查询]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3110" target="_blank" rel="noopener">传送门</a><br>哎呀这题刚了一上午没刚出来，下午发现少写$5$个字符，浑身难受。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$N$个位置，$M$个操作。<br>操作有$2$种：</p>
-<ul>
-<li>$1\ a\ b\ c$    在第$a$个位置到第$b$个位置，每个位置加入一个数$c$。</li>
-<li>$2\ a\ b\ c$    询问从第$a$个位置到第$b$个位置，第$c$大的数是多少。</li>
-</ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/18/BZOJ-3110/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
 
 </div>
                 
@@ -717,6 +329,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Notice">
+        <span class="has-mr-6">2.1</span>
+        <span>Notice</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1254,7 +893,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="胡闹 统计三角形" height="28">
                 
                 </a>
                 <p class="is-size-7">
