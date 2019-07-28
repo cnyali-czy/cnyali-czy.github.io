@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>胡闹 统计三角形 - CraZYali's BLOG</title>
+<title>胡闹 交互程序 - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="胡闹 统计三角形" height="28">
+                <img src="/images/logo.png" alt="胡闹 交互程序" height="28">
             
             </a>
         </div>
@@ -133,7 +133,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-27T16:19:31.000Z">2019-07-28</time>
+                <time class="level-item has-text-grey" datetime="2019-07-28T14:51:27.000Z">2019-07-28</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -143,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 664 个字)
+                    6 分钟 读完 (大约 862 个字)
                 </span>
                 
                 
@@ -152,25 +152,45 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                胡闹 统计三角形
+                胡闹 交互程序
             
         </h1>
         <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你平面上$n\le3000$个点，每个点有一个颜色$c_i\in[0,2]$。</p>
-<p>定义一个三角形是好的，当且仅当这个三角形的三个定点颜色不同。</p>
-<p>定义一对三角形是好的，当且仅当这两个三角形是好的其这两个三角形没有交集。</p>
-<p>为了避免歧义，保证点的坐标互不相同。</p>
-<p>统计好的三角形对有多少。</p>
+            <p>毒瘤交互。</p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$N$个盒子，第$i$个盒子里面有$p_i$个球，从一个盒子中只能拿一个球出来。求恰好拿出来$M$个球的方案数，对$998244353$取模。</p>
+<p>你不知道$pi​$的具体的值，只能指定操作。</p>
+<p>具体来说，你有一个长度为$T$的整型数组$A$，其中前$N$个位置初始存的是$p_1,p_2,⋯,p_N$。其余位置的初始值由你通过<code>Set</code>操作来决定。</p>
+<p>在决定完初始值之后，你就只能指定操作了。你只能提出：</p>
+<ol>
+<li>$A_i=A_j+A_k$</li>
+<li>$A_i=A_j−A_k$</li>
+<li>$A_i=A_j\times A_k$（所有运算均在模$998244353$意义下）</li>
+<li>过程中不允许你修改前$N$个位置的值。</li>
+<li>过程中不允许使用<code>Set</code>操作赋值。</li>
+</ol>
+<p>你还需要指出$A$中的哪一个数是答案。</p>
+<h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>$1\le M\le N\le 1000,T=1004$</p>
 <a id="more"></a>
 
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>首先，两个三角形没有交集的的充要条件是这两个三角形之间存在两条内公切线。</p>
-<p>那么我们就可以枚举内公切线。</p>
-<p>这条直线会把平面分成两个部分，然后有贡献的点对一定一个在这条直线左边，一个在这条直线右边。</p>
-<p>那我们可以先枚举一个点，然后把其他的点做极角排序。极角排序用向量比较麻烦，那就直接三角函数吧。</p>
-<p>按照这样的顺序枚举两个点来枚举内公切线，就可以保证每次都只会把一个点从一边丢到另一边去。</p>
-<p>统计的时候大力讨论一下颜色就可以了。</p>
-<h2 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h2><p>值得注意的是，如果管坐标大小直接随便搞，答案会是真正的答案的$4$倍，要记得把这个东西搞掉。</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">3000</span> + <span class="hljs-number">10</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1</span>), inf = <span class="hljs-number">1e20</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans;</span><br><span class="line"><span class="hljs-keyword">int</span> cnt[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];</span><br><span class="line"><span class="hljs-comment">//cnt[0/1][x] 分割线左右的cnt</span></span><br><span class="line"><span class="hljs-keyword">bool</span> app[maxn];</span><br><span class="line"><span class="hljs-comment">//被搞过去几次</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span></span></span><br><span class="line"><span class="hljs-class">{</span></span><br><span class="line">	<span class="hljs-keyword">int</span> x, y, c, id;</span><br><span class="line">	<span class="hljs-keyword">double</span> k;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt; (point B) <span class="hljs-keyword">const</span> {<span class="hljs-keyword">return</span> k &lt; B.k;}<span class="hljs-comment">//极角排序</span></span><br><span class="line">}P[maxn], p[maxn], O;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"B.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"B.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>, &amp;P[i].x, &amp;P[i].y, &amp;P[i].c), P[i].id = i;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> tmp;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">	{</span><br><span class="line">		O = P[i];</span><br><span class="line">		<span class="hljs-keyword">int</span> k = O.c;</span><br><span class="line">		copy(P + <span class="hljs-number">1</span>, P + <span class="hljs-number">1</span> + n, p + <span class="hljs-number">1</span>);</span><br><span class="line">		<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cur</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, n)</span><br><span class="line">			<span class="hljs-keyword">if</span> (i ^ p[j].id)</span><br><span class="line">			{</span><br><span class="line">				p[++cur]=p[j];</span><br><span class="line">				p[cur].k = <span class="hljs-built_in">atan2</span>(p[cur].y - O.y, p[cur].x - O.x);</span><br><span class="line">				<span class="hljs-keyword">if</span> (p[cur].k &lt;= <span class="hljs-number">0</span>) p[cur].k += pi;</span><br><span class="line">			}</span><br><span class="line">		sort(p + <span class="hljs-number">1</span>, p + n);</span><br><span class="line">		<span class="hljs-built_in">memset</span>(cnt, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(cnt));</span><br><span class="line">		<span class="hljs-built_in">memset</span>(app, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(app));</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, cur)</span><br><span class="line">			<span class="hljs-keyword">if</span> (p[j].y &lt; O.y || p[j].y == O.y &amp;&amp; p[j].x &gt; O.x) ++cnt[<span class="hljs-number">0</span>][p[j].c];<span class="hljs-comment">//一开始下面</span></span><br><span class="line">			<span class="hljs-keyword">else</span> ++cnt[<span class="hljs-number">1</span>][p[j].c], app[j] = <span class="hljs-number">1</span>;</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, cur)</span><br><span class="line">		{</span><br><span class="line">			--cnt[app[j]][p[j].c];</span><br><span class="line">			tmp = <span class="hljs-number">1l</span>l * (k ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * (p[j].c ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>);<span class="hljs-comment">//大力统计颜色</span></span><br><span class="line">			ans += tmp;</span><br><span class="line">			tmp = <span class="hljs-number">1l</span>l * (k ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * (p[j].c ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">1</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] : <span class="hljs-number">1</span>) * ((k ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>) * ((p[j].c ^ <span class="hljs-number">2</span>) ? cnt[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] : <span class="hljs-number">1</span>);</span><br><span class="line">			ans += tmp;</span><br><span class="line">			++cnt[app[j] ^= <span class="hljs-number">1</span>][p[j].c];</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; ans / <span class="hljs-number">4</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>由生成函数，答案显然为：<br>$$<br>Ans=\prod_{i=1}^n (1+p_i\times x) [x^{n-m}]<br>$$<br>然后我们考虑一些事情：</p>
+<h2 id="操作的处理"><a href="#操作的处理" class="headerlink" title="操作的处理"></a>操作的处理</h2><h3 id="归零"><a href="#归零" class="headerlink" title="归零"></a>归零</h3><p>直接把一个数减去自身即可。</p>
+<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p>先归零，然后加起来即可。</p>
+<h3 id="（计算中）赋值"><a href="#（计算中）赋值" class="headerlink" title="（计算中）赋值"></a>（计算中）赋值</h3><p>在计算前，先搞一个$1$出来。</p>
+<p>把要赋的值二进制分解赋值即可。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>直接搞暴力复杂度有点爆炸。</p>
+<p>考虑一下$IDFT$的过程，那么我们可以把答案化成这样的形式：<br>$$<br>Ans=\frac{1}{N}\times\sum_{i=0}^{N-1}f(\omega_N^i)\times\omega_N^{-i\times m}<br>$$<br>这个时候我们就发现$T=1004$给我们剩下了哪$4$个变量了：<br>$$<br>Ans,f(x),x,y=1<br>$$</p>
+<p>实现时预处理出$\omega_N^i$即可。</p>
+<h1 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h1><p>哎呀这个东西时真的坑。</p>
+<p>我被我的巨大常数送走无数次之后，决心：</p>
+<blockquote>
+<p>让常数优化成为习惯。</p>
+</blockquote>
+<p>然后我就疯狂加<code>inline</code>，然后就疯狂<code>Complie Error</code>。</p>
+<p>调了好久，最后原因是交互库你里面的函数没有<code>inline</code>，而我加了。</p>
+<p>这样会导致什么呢？对，交互库的函数就没有定义了。</p>
+<p>而且这个东西不用<code>g++ -o %&lt; % grader.cpp</code>还查不出来。</p>
+<p>难受😔。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//consider idft</span></span><br><span class="line"><span class="hljs-comment">//NTT</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"polynomial.h"</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1000</span> + <span class="hljs-number">30</span>, g = <span class="hljs-number">3</span>, MOD = <span class="hljs-number">998244353</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> n, m, t, N;</span><br><span class="line"><span class="hljs-keyword">int</span> ans, fx, w[maxn], t1, t2;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">power_pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">int</span> ans = <span class="hljs-number">1</span>, base = a;</span><br><span class="line">	<span class="hljs-keyword">while</span> (b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) ans = <span class="hljs-number">1l</span>l * ans * base % MOD;</span><br><span class="line">		base = <span class="hljs-number">1l</span>l * base * base % MOD;</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> (ans + MOD) % MOD;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> t)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	::n=n;</span><br><span class="line">	::m=n-m;</span><br><span class="line">	N = <span class="hljs-number">1024</span>;</span><br><span class="line">	ans = n + <span class="hljs-number">1</span>, fx = n + <span class="hljs-number">2</span>, t1 = n + <span class="hljs-number">3</span>, t2 = n + <span class="hljs-number">4</span>;</span><br><span class="line">	Set(ans, <span class="hljs-number">0</span>);</span><br><span class="line">	Set(fx, <span class="hljs-number">0</span>);</span><br><span class="line">	Set(t1 ,<span class="hljs-number">1</span>);</span><br><span class="line">	Set(t2, <span class="hljs-number">1</span>);</span><br><span class="line">	w[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	w[<span class="hljs-number">1</span>] = power_pow(<span class="hljs-number">3</span>, (MOD - <span class="hljs-number">1</span>) / N);</span><br><span class="line">	REP(i, <span class="hljs-number">2</span>, N - <span class="hljs-number">1</span>) w[i] = <span class="hljs-number">1l</span>l * w[i<span class="hljs-number">-1</span>] * w[<span class="hljs-number">1</span>] % MOD;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Set_Zero</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{Minus(x, x, x);}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Copy</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	Set_Zero(i);</span><br><span class="line">	Plus(i, i, j);<span class="hljs-comment">//i = i + j = 0 + j = j</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Power_pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> base, <span class="hljs-keyword">int</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">bool</span> first = <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">while</span> (b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>)</span><br><span class="line">			<span class="hljs-keyword">if</span> (first)</span><br><span class="line">			{</span><br><span class="line">				first = <span class="hljs-number">0</span>;</span><br><span class="line">				Copy(t1, base);</span><br><span class="line">			}</span><br><span class="line">			<span class="hljs-keyword">else</span> Multiply(t1, t1, base);</span><br><span class="line">		Multiply(base, base, base);</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	Copy(base, t1);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	Power_pow(t2, MOD - <span class="hljs-number">1</span>);</span><br><span class="line">	Set_Zero(t1);</span><br><span class="line">	<span class="hljs-keyword">while</span> (x)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (x &amp; <span class="hljs-number">1</span>) Plus(t1, t1, t2);</span><br><span class="line">		Plus(t2, t2, t2);</span><br><span class="line">		x &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Solve</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		Power_pow(t2, MOD<span class="hljs-number">-1</span>);</span><br><span class="line">		Copy(fx, t2);</span><br><span class="line">		Get(w[i]);</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, n)</span><br><span class="line">		{</span><br><span class="line">			Plus(t1, t1, j);</span><br><span class="line">			Multiply(fx, fx, t1);</span><br><span class="line">			Minus(t1, t1, j);</span><br><span class="line">		}</span><br><span class="line">		Get(w[((-i * m % N) + N) % N]);</span><br><span class="line">		Multiply(fx, fx, t1);</span><br><span class="line">		Plus(ans, ans, fx);</span><br><span class="line">	}</span><br><span class="line">	Get(power_pow(N, MOD<span class="hljs-number">-2</span>));</span><br><span class="line">	Multiply(ans, ans, t1);</span><br><span class="line">	Answer(ans);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 
         </div>
@@ -179,7 +199,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/胡闹系列/">胡闹系列</a>, <a class="has-link-grey -link" href="/tags/计算几何/">计算几何</a>
+                    <a class="has-link-grey -link" href="/tags/FFT、NTT/">FFT、NTT</a>, <a class="has-link-grey -link" href="/tags/WO-YE-BU-HUI/">WO YE BU HUI</a>, <a class="has-link-grey -link" href="/tags/交互/">交互</a>, <a class="has-link-grey -link" href="/tags/生成函数/">生成函数</a>, <a class="has-link-grey -link" href="/tags/胡闹系列/">胡闹系列</a>
                 </div>
             </div>
         </div>
@@ -215,17 +235,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/28/胡闹-交互程序/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">胡闹 交互程序</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/27/口胡-最小K覆盖圆/">
-                <span class="level-item">口胡 最小K覆盖圆</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/28/胡闹-统计三角形/">
+                <span class="level-item">胡闹 统计三角形</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -347,16 +360,40 @@
         <span class="has-mr-6">1</span>
         <span>题目大意</span>
         </a></li><li>
-        <a class="is-flex" href="#解析">
+        <a class="is-flex" href="#数据范围">
         <span class="has-mr-6">2</span>
+        <span>数据范围</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">3</span>
         <span>解析</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Notice">
-        <span class="has-mr-6">2.1</span>
-        <span>Notice</span>
+        <a class="is-flex" href="#操作的处理">
+        <span class="has-mr-6">3.1</span>
+        <span>操作的处理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#归零">
+        <span class="has-mr-6">3.1.1</span>
+        <span>归零</span>
+        </a></li><li>
+        <a class="is-flex" href="#复制">
+        <span class="has-mr-6">3.1.2</span>
+        <span>复制</span>
+        </a></li><li>
+        <a class="is-flex" href="#（计算中）赋值">
+        <span class="has-mr-6">3.1.3</span>
+        <span>（计算中）赋值</span>
         </a></li></ul></li><li>
+        <a class="is-flex" href="#优化">
+        <span class="has-mr-6">3.2</span>
+        <span>优化</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Notice">
+        <span class="has-mr-6">4</span>
+        <span>Notice</span>
+        </a></li><li>
         <a class="is-flex" href="#Code">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">5</span>
         <span>Code</span>
         </a></li></ul>
         </div>
@@ -914,7 +951,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="胡闹 统计三角形" height="28">
+                    <img src="/images/logo.png" alt="胡闹 交互程序" height="28">
                 
                 </a>
                 <p class="is-size-7">

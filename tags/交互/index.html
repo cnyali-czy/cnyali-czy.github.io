@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: FFT - CraZYali's BLOG</title>
+<title>标签: 交互 - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -128,7 +128,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">FFT</a></li>
+            <li class="is-active"><a href="#" aria-current="page">交互</a></li>
         </ul>
         </nav>
     </div>
@@ -140,7 +140,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-29T00:07:15.000Z">2019-03-29</time>
+                <time class="level-item has-text-grey" datetime="2019-07-28T14:51:27.000Z">2019-07-28</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 821 个字)
+                    6 分钟 读完 (大约 862 个字)
                 </span>
                 
                 
@@ -159,134 +159,31 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/03/29/BZOJ-4503/">BZOJ 4503 [两个串]</a>
+                <a class="has-link-black-ter" href="/2019/07/28/胡闹-交互程序/">胡闹 交互程序</a>
             
         </h1>
         <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4503" target="_blank" rel="noopener">传送门</a><br>这真的是个黑科技了。<br><del>以后忘了怎么写KMP就写FFT了。</del></p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给出两个长度不超过$10^5$的由小写英文字符构成的字符串$S,T$，询问$T$在$S$中出现了多少次及每次出现的位置（下标从$0$开始）。<br>$T$中可能存在<code>?</code>通配符，可以匹配任何英文字符。</p>
+            <p>毒瘤交互。</p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$N$个盒子，第$i$个盒子里面有$p_i$个球，从一个盒子中只能拿一个球出来。求恰好拿出来$M$个球的方案数，对$998244353$取模。</p>
+<p>你不知道$pi​$的具体的值，只能指定操作。</p>
+<p>具体来说，你有一个长度为$T$的整型数组$A$，其中前$N$个位置初始存的是$p_1,p_2,⋯,p_N$。其余位置的初始值由你通过<code>Set</code>操作来决定。</p>
+<p>在决定完初始值之后，你就只能指定操作了。你只能提出：</p>
+<ol>
+<li>$A_i=A_j+A_k$</li>
+<li>$A_i=A_j−A_k$</li>
+<li>$A_i=A_j\times A_k$（所有运算均在模$998244353$意义下）</li>
+<li>过程中不允许你修改前$N$个位置的值。</li>
+<li>过程中不允许使用<code>Set</code>操作赋值。</li>
+</ol>
+<p>你还需要指出$A$中的哪一个数是答案。</p>
+<h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>$1\le M\le N\le 1000,T=1004$</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/29/BZOJ-4503/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-28T03:15:24.000Z">2019-03-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 448 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/28/BZOJ-3527/">BZOJ 3527 [ZJOI2014 力]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3527" target="_blank" rel="noopener">传送门</a><br>简直就是万有引力吧。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给出$n$个数$q_i$，定义：</p>
-<p>$F_i={j&lt;i}\frac{q_iq_j}{(i-j)^2}-{j&gt;i}\frac{q_iq_j}{(i-j)^2}$</p>
-<p>$$E_i=\frac{F_i}{q_i}​$$<br>求$E_i​$</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/28/BZOJ-3527/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-26T08:53:36.000Z">2019-03-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 735 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/26/BZOJ-4827/">BZOJ 4827 [HNOI2017 礼物]</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4827" target="_blank" rel="noopener">传送门</a><br>我一定是脑子烧坏了，FFT都写不对。</p>
-<hr>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给你两个长度为$n$的序列$a,b$，满足$a_i,b_i\in [1,m]$，$a,b$中的数组可以循环（即可以把开头放到结尾，结尾放到开头）。</p>
-<p>定义$a,b$之间的差异值为$$\sum_{i\in[1,n]} (a_i-b_i)^2$$。你可以选择一个常数$c$，使得$a$或$b$中的每个数加上$c$。</p>
-<p>求最小差异值。$n\le 50000,m\le 100$</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/26/BZOJ-4827/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/07/28/胡闹-交互程序/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -349,7 +246,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -369,7 +266,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        33
                     </p>
                 </div>
             </div>
@@ -476,7 +373,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">28</span>
+                <span class="level-item tag">29</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/题解/合集/">
@@ -506,7 +403,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT/" style="font-size: 13.33px;">FFT</a> <a href="/tags/Hash/" style="font-size: 11.67px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 15px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 15px;">主席树</a> <a href="/tags/倍增/" style="font-size: 11.67px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡系列/" style="font-size: 11.67px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/坑/" style="font-size: 10px;">坑</a> <a href="/tags/套路/" style="font-size: 11.67px;">套路</a> <a href="/tags/字符串/" style="font-size: 16.67px;">字符串</a> <a href="/tags/容斥/" style="font-size: 10px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.67px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.67px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.67px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 10px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 16.67px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.67px;">毒瘤计数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.67px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.33px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.67px;">黑科技</a>
+        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 15px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 11.67px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 16.67px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 15px;">主席树</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.67px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡系列/" style="font-size: 11.67px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/坑/" style="font-size: 10px;">坑</a> <a href="/tags/套路/" style="font-size: 11.67px;">套路</a> <a href="/tags/字符串/" style="font-size: 16.67px;">字符串</a> <a href="/tags/容斥/" style="font-size: 10px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.67px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.67px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.67px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 10px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 16.67px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.67px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.67px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.33px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.67px;">黑科技</a>
     </div>
 </div>
 
@@ -517,6 +414,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/28/胡闹-交互程序/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="胡闹 交互程序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-28T14:51:27.000Z">2019-07-28</time></div>
+                    <a href="/2019/07/28/胡闹-交互程序/" class="has-link-black-ter is-size-6">胡闹 交互程序</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -594,25 +510,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/07/25/胡闹-填数/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="胡闹 填数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T15:12:57.000Z">2019-07-25</time></div>
-                    <a href="/2019/07/25/胡闹-填数/" class="has-link-black-ter is-size-6">胡闹 填数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -634,7 +531,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">22</span>
+                    <span class="level-item tag">23</span>
                 </span>
             </a>
         </li>
@@ -693,9 +590,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/FFT/">
-                        <span class="tag">FFT</span>
-                        <span class="tag is-grey">3</span>
+                    <a class="tags has-addons" href="/tags/FFT、NTT/">
+                        <span class="tag">FFT、NTT</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -716,7 +613,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/WO-YE-BU-HUI/">
                         <span class="tag">WO YE BU HUI</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -738,6 +635,13 @@
                     <a class="tags has-addons" href="/tags/主席树/">
                         <span class="tag">主席树</span>
                         <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/交互/">
+                        <span class="tag">交互</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -854,6 +758,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/生成函数/">
+                        <span class="tag">生成函数</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/网络流/">
                         <span class="tag">网络流</span>
                         <span class="tag is-grey">1</span>
@@ -870,7 +781,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/胡闹系列/">
                         <span class="tag">胡闹系列</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
