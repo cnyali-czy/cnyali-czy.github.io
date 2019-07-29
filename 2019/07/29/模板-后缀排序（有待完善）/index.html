@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>归档 - CraZYali's BLOG</title>
+<title>模板 后缀排序（有待完善） - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="模板 后缀排序（有待完善）" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -123,233 +127,148 @@
     <section class="section">
         <div class="container" style="opacity: 0.85">
             <div class="columns">
-                <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-<div class="card widget">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-29T15:23:20.000Z">2019-07-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/模板/">模板</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 315 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                模板 后缀排序（有待完善）
+            
+        </h1>
+        <div class="content">
+            <h1 id="这是一篇有待完善的blog。"><a href="#这是一篇有待完善的blog。" class="headerlink" title="这是一篇有待完善的blog。"></a>这是一篇有待完善的blog。</h1><hr>
+<p>我永远喜欢<code>LOJ</code>。</p>
+<p>我永远喜欢<code>LOJ</code>。</p>
+<p>我永远喜欢<code>LOJ</code>。</p>
+<p><a href="https://loj.ac/problem/111" target="_blank" rel="noopener">传送门</a></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给出一个字符串（由大小字母和英文组成），把后缀排序，输出后缀数组。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>我不会后缀数组啊。</p>
+<p>但是我屯了一个<code>SAM</code><a href="#footnote1" id="foot1"><sup>[1]</sup></a>的板子，听说用这个东西可以做。</p>
+<p>然后我就想，能不能把后缀树搞出来，有了后缀树我们就可以随便<code>dfs</code>一下就行了对吧。</p>
+<p>但是怎么构造呢？</p>
+<p><code>SAM</code>好像有两部分来着?一个是<code>DAWG</code><a href="#footnote2" id="foot2"><sup>[2]</sup></a>，一个是<code>Parent</code>树？</p>
+<p>还是想不到，那么：</p>
+<blockquote>
+<p>我们可以考虑上网搜题解。</p>
+<p>——hh</p>
+</blockquote>
+<p>题解告诉我们，反串的<code>Parent</code>树就是后缀树？</p>
+<p>那就这样吧。</p>
+<h1 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h1><p>这个字符集真的大，而且玄学错误。</p>
+<p>我不得不搞一些什么<code>gp_hash_table</code>和<code>bitset</code>这类的操作，再<code>Luogu</code>上还只有$70$分。</p>
+<p>然后我毅然投入了<code>LOJ</code>的怀抱。</p>
+<p>真香。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//too ugly, so gugugu</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p><a id="#footnote1" href="foot1"><sup>[1]</sup></a>：即<code>Suffix Auto Maton</code>，后缀自动机。</p>
+<p><a id="#footnote2" href="foot2"><sup>[2]</sup></a>：有向无环单词图。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/SAM/">SAM</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-23T14:01:42.000Z">2019-07-23</time>
-                        <a href="/2019/07/23/胡闹-interval/" class="has-link-black-ter is-size-6">胡闹 interval</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-23T08:01:11.000Z">2019-07-23</time>
-                        <a href="/2019/07/23/Luogu-2597-ZJOI2012-灾难/" class="has-link-black-ter is-size-6">Luogu 2597 [ZJOI2012 灾难]</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-22T14:31:40.000Z">2019-07-22</time>
-                        <a href="/2019/07/22/胡闹-reform/" class="has-link-black-ter is-size-6">胡闹 reform</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-21T14:51:53.000Z">2019-07-21</time>
-                        <a href="/2019/07/21/胡闹-老园丁与小司机/" class="has-link-black-ter is-size-6">胡闹 老园丁与小司机</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-21T09:42:48.000Z">2019-07-21</time>
-                        <a href="/2019/07/21/胡闹-string/" class="has-link-black-ter is-size-6">胡闹 string</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-20T15:20:36.000Z">2019-07-20</time>
-                        <a href="/2019/07/20/胡闹-序列/" class="has-link-black-ter is-size-6">胡闹 序列</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-19T15:36:54.000Z">2019-07-19</time>
-                        <a href="/2019/07/19/胡闹-一路畅通/" class="has-link-black-ter is-size-6">胡闹 一路畅通</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-19T14:25:15.000Z">2019-07-19</time>
-                        <a href="/2019/07/19/胡闹-卷积练习题/" class="has-link-black-ter is-size-6">胡闹 卷积练习题</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-18T16:04:09.000Z">2019-07-19</time>
-                        <a href="/2019/07/19/胡闹-斐波那契/" class="has-link-black-ter is-size-6">胡闹 斐波那契</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-18T15:56:57.000Z">2019-07-18</time>
-                        <a href="/2019/07/18/胡闹-最小质因数/" class="has-link-black-ter is-size-6">胡闹 最小质因数</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
-    
 
-    
+
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/">上一页</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Todo List</span>
+            </a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/3/">下一页</a>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/28/胡闹-交互程序/">
+                <span class="level-item">胡闹 交互程序</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
-            
-            <li><a class="pagination-link is-current" href="/archives/page/2/">2</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/3/">3</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/4/">4</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
 </div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
+    </div>
+</div>
+
 </div>
                 
 
@@ -427,6 +346,41 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#这是一篇有待完善的blog。">
+        <span class="has-mr-6">1</span>
+        <span>这是一篇有待完善的blog。</span>
+        </a></li><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">2</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">3</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Notice">
+        <span class="has-mr-6">4</span>
+        <span>Notice</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">5</span>
+        <span>Code</span>
+        </a></li><li>
+        <a class="is-flex" href="#注释">
+        <span class="has-mr-6">6</span>
+        <span>注释</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -997,7 +951,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="模板 后缀排序（有待完善）" height="28">
                 
                 </a>
                 <p class="is-size-7">
