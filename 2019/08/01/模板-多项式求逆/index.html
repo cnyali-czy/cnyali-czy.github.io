@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>归档: 2019/4 - CraZYali's BLOG</title>
+<title>模板 多项式求逆 - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="模板 多项式求逆" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -123,38 +127,128 @@
     <section class="section">
         <div class="container" style="opacity: 0.85">
             <div class="columns">
-                <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        四月 2019
-        </h3>
-        <div class="timeline">
+                <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-01T00:04:36.000Z">2019-08-01</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-04-02T02:45:07.000Z">2019-04-02</time>
-                        <a href="/2019/04/02/Luogu-2444/" class="has-link-black-ter is-size-6">Luogu 2444 [POI2000 病毒]</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/模板/">模板</a>
                 </div>
-            </article>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 518 个字)
+                </span>
+                
+                
+            </div>
+        </div>
         
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                模板 多项式求逆
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://www.luogu.org/problem/P4238" target="_blank" rel="noopener">传送门</a></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个多项式$F(x)$，请求出一个多项式$G(x)$，满足$F(x)\times G(x) \equiv 1 (\bmod x^n)$。系数对$998244353$取模。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>转载自<a href="https://huhaoo.github.io/2019/03/14/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%AE%97%E6%B3%95%E5%90%88%E9%9B%86/" target="_blank" rel="noopener">huhaoo的博客</a></p>
+<p>国际惯例，先把多项式长度弄成$2^k$。</p>
+<p>如果我们求出了：<br>$$<br>f’^{-1}f\equiv 1(\bmod x^\frac k2)<br>$$<br>那么可以得到：<br>$$<br>\begin{align*}<br>f^{-1}f&amp;\equiv1(\bmod x^\frac k2)\\<br>f(f^{-1}-f’^{-1})&amp;\equiv0(\bmod x^\frac k2)\\<br>(f^{-1}-f’^{-1})^2&amp;\equiv0(\bmod x^k)\\<br>f^{-2}-2f^{-1}f’^{-1}-f’^{-2}&amp;\equiv0(\bmod x^k)\\<br>f^{-1}-2f’{-1}-ff’{-2}&amp;\equiv0(\bmod x^k)\\<br>f^{-1}&amp;\equiv f’{-1}(2-ff’^{-1})(\bmod x^k)<br>\end{align*}<br>$$</p>
+<p>边界给整数求逆即可。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for(int i = s; i &gt;= e ;i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for(int i = s; i &lt;= e ;i++)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = min(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e5</span> + <span class="hljs-number">10</span>, maxlen = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">18</span>, MOD = <span class="hljs-number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-function"><span class="hljs-keyword">inline</span> T <span class="hljs-title">read</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	T ans(0), p(1);</span><br><span class="line">	<span class="hljs-keyword">char</span> c = getchar();</span><br><span class="line">	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) p = <span class="hljs-number">-1</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	{</span><br><span class="line">		ans = ans * <span class="hljs-number">10</span> + c - <span class="hljs-number">48</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> ans * p;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">power_pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> base, <span class="hljs-keyword">int</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ans</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;</span><br><span class="line">	<span class="hljs-keyword">while</span> (b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b&amp;<span class="hljs-number">1</span>) ans = <span class="hljs-number">1l</span>l * ans * base % MOD;</span><br><span class="line">		base = <span class="hljs-number">1l</span>l * base * base % MOD;</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inv(x) power_pow(x, MOD - 2)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, f[maxlen], R[maxlen], len;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">NTT</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a[], <span class="hljs-keyword">int</span> flag)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, len<span class="hljs-number">-1</span>) <span class="hljs-keyword">if</span> (i &lt; R[i]) swap(a[i], a[R[i]]);</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i &lt;&lt;= <span class="hljs-number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">int</span> wn = power_pow(<span class="hljs-number">3</span>, (MOD - <span class="hljs-number">1</span>) / (i &lt;&lt; <span class="hljs-number">1</span>));</span><br><span class="line">		<span class="hljs-keyword">if</span> (flag &lt; <span class="hljs-number">0</span>) wn = inv(wn);</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; len; k += i &lt;&lt; <span class="hljs-number">1</span>)</span><br><span class="line">		{</span><br><span class="line">			<span class="hljs-keyword">int</span> w = <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>; l &lt; i;l++, w = <span class="hljs-number">1l</span>l * w * wn % MOD)</span><br><span class="line">			{</span><br><span class="line">				int x(a[k + l]), y(1ll * w * a[k + l + i] % MOD);</span><br><span class="line">				a[k + l] = (x + y) % MOD;</span><br><span class="line">				a[k + l + i] = (x - y) % MOD;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">if</span> (flag &lt; <span class="hljs-number">0</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">int</span> invN = inv(len);</span><br><span class="line">		REP(i, <span class="hljs-number">0</span>, len - <span class="hljs-number">1</span>) a[i] = <span class="hljs-number">1l</span>l * a[i] * invN % MOD;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> Inv[maxlen], temp[maxlen];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> lim, <span class="hljs-keyword">int</span> a[], <span class="hljs-keyword">int</span> b[])</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (!lim) <span class="hljs-keyword">return</span> b[<span class="hljs-number">0</span>] = inv(a[<span class="hljs-number">0</span>]), <span class="hljs-keyword">void</span>();</span><br><span class="line">	solve(lim &gt;&gt; <span class="hljs-number">1</span>, a, b);</span><br><span class="line">	len = lim + lim;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, len - <span class="hljs-number">1</span>) R[i] = (R[i &gt;&gt; <span class="hljs-number">1</span>] &gt;&gt; <span class="hljs-number">1</span>) | (i &amp; <span class="hljs-number">1</span> ? lim : <span class="hljs-number">0</span>);</span><br><span class="line">	copy(a, a + lim, temp);</span><br><span class="line">	NTT(temp, <span class="hljs-number">1</span>);NTT(b, <span class="hljs-number">1</span>);</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, len - <span class="hljs-number">1</span>) b[i] = <span class="hljs-number">1l</span>l * (<span class="hljs-number">2l</span>l - <span class="hljs-number">1l</span>l * temp[i] * b[i] % MOD) % MOD * b[i] % MOD;</span><br><span class="line">	NTT(b, <span class="hljs-number">-1</span>);</span><br><span class="line">	REP(i, lim, len - <span class="hljs-number">1</span>) b[i] = <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"4238.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"4238.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>) f[i] = read&lt;<span class="hljs-keyword">int</span>&gt;();</span><br><span class="line">	solve(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">17</span>, f, Inv);</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d%c"</span>, (Inv[i] + MOD) % MOD, i == n - <span class="hljs-number">1</span> ? <span class="hljs-string">'\n'</span> : <span class="hljs-string">' '</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/FFT、NTT/">FFT、NTT</a>, <a class="has-link-grey -link" href="/tags/多项式/">多项式</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
         </div>
     </div>
 </div>
 
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Todo List</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/30/BZOJ-3513-MUTC2013-idiots/">
+                <span class="level-item">BZOJ 3513 [MUTC2013 idiots]</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
+    </div>
+</div>
 
 </div>
                 
@@ -233,6 +327,29 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -821,7 +938,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="模板 多项式求逆" height="28">
                 
                 </a>
                 <p class="is-size-7">
