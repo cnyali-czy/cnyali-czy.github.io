@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: 斜率优化 - CraZYali's BLOG</title>
+<title>Luogu 1117 [NOI2016 优秀的拆分] - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="Luogu 1117 [NOI2016 优秀的拆分]" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -124,23 +128,12 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">斜率优化</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-20T15:20:36.000Z">2019-07-20</time>
+                <time class="level-item has-text-grey" datetime="2019-08-03T13:27:45.000Z">2019-08-03</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -150,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 739 个字)
+                    7 分钟 读完 (大约 1124 个字)
                 </span>
                 
                 
@@ -159,24 +152,51 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/20/胡闹-序列/">胡闹 序列</a>
+                Luogu 1117 [NOI2016 优秀的拆分]
             
         </h1>
         <div class="content">
-            <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个长度为$n\le10^6$的序列$x$。</p>
-<p>你需要从序列中选出一些位置。对于第$i$个位置，如果它被选中，你会获得$x_i$的收益；如果它没被选中，找到最小的$j$使得第$j$个位置到第$i$个位置都没有被选中，你需要付出$i−j+1$的代价。</p>
-<p>此外，你选出的位置必须满足$x_i$是单调不下降的。</p>
-<p>最大化收益减去代价的结果。</p>
+            <p><a href="https://www.luogu.org/problem/P1117" target="_blank" rel="noopener">传送门</a></p>
+<p><del>我大概率是一个错解</del></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个长度为$n\le30000$的字符串$S$。</p>
+<p>如果<code>A</code>和<code>B</code>都是非空字符串，那么<code>AABB</code>就是一个优秀的拆分。<code>A</code>和<code>B</code>可以相同。</p>
+<p>求$S$的所有子串中有多少个优秀的拆分，不同位置出现的子串不算相同子串。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>我们考虑怎么把<code>AA</code>和<code>BB</code>分开求。</p>
+<p>那么我们只要求出每个以每个点为终点的<code>AA</code>串个数和以每个点为起点的<code>AA</code>串个数，然后相邻的点乘一下求和就可以了。</p>
+<p><strong>下面开始就是技巧了。</strong></p>
+<p>考虑枚举<strong><code>A</code></strong>串的长度$L$，然后每$L$个点设置关键点。</p>
+<p>也就是说，设置的关键点为$L,2L,3L….$。</p>
+<p>我们发现，每一个<strong><code>AA</code></strong>串长度为$2L$，那么它一定会正好包含两个相邻的关键点。</p>
+<p>那么我们枚举这两个关键点，考虑求出正好包含这两个关键点的串的<code>AA</code>串的贡献。</p>
+<p>设我们当前枚举的左边的关键点为$pos_1$，右边的关键点为$pos_2$这个<code>AA</code>串左端点最左可以到$head$，最右可以到$tail$。</p>
+<p><img src="https://s2.ax1x.com/2019/08/03/es9F76.png" alt="给个图方便理解一下吧"></p>
+<p>那么在上图<del>（是真的丑）</del>中，<code>AA</code>串整体只能在灰色区域内滑动。</p>
+<p>容易发现，$head$一定是在合法位置内，最左边的满足$S_{[head,pos_1]}=S_{[pos_2-(pos_1-head),pos_2]}$的点。</p>
+<p>同理，$tail$一定是在合法位置内，最右边的满足$S_{[pos_2,tail]}=S_{[pos_1-(tail-pos_2),pos_1]}$的点。</p>
+<p>这个东西二分一下就好了，有贡献的区间就是$[head+2L-1,tail]$和$[head,tail-2L+1]$，分别对应向前和向后的<code>AA</code>串个数。</p>
+<p>然后这个对于不同的$L$有多次贡献，差分即可。</p>
+<p>外层枚举$L$的复杂度是$\sum_{L=1}^{n}\frac nL=\mathcal{O}(n\ log\ n)$的，加上二分，总复杂度就是$\mathcal O(n\ log^2\ n)$的。</p>
+<p>注意一下边界条件就可以了。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for(int i = s; i &gt;= e ;i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for(int i = s; i &lt;= e ;i++)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = min(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">30000</span> + <span class="hljs-number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-function"><span class="hljs-keyword">inline</span> T <span class="hljs-title">read</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	T ans(0), p(1);</span><br><span class="line">	<span class="hljs-keyword">char</span> c = getchar();</span><br><span class="line">	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) p = <span class="hljs-number">-1</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(c))</span><br><span class="line">	{</span><br><span class="line">		ans = ans * <span class="hljs-number">10</span> + c - <span class="hljs-number">48</span>;</span><br><span class="line">		c = getchar();</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> ans * p;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-keyword">char</span> s[maxn];</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> base, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> MOD&gt;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Hash_Table</span></span></span><br><span class="line"><span class="hljs-class">{</span></span><br><span class="line">	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> bin[maxn], Hash[maxn];</span><br><span class="line">	Hash_Table()</span><br><span class="line">	{</span><br><span class="line">		bin[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, maxn<span class="hljs-number">-10</span>) bin[i] = bin[i<span class="hljs-number">-1</span>] * base % MOD;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function">	</span>{</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) Hash[i] = (Hash[i<span class="hljs-number">-1</span>] * base % MOD + s[i] - <span class="hljs-string">'a'</span>) % MOD;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">get_val</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span></span><br><span class="line"><span class="hljs-function">	</span>{</span><br><span class="line">		<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> res = Hash[r] - Hash[l<span class="hljs-number">-1</span>] * bin[r - l + <span class="hljs-number">1</span>] % MOD;</span><br><span class="line">		<span class="hljs-keyword">return</span> (res % MOD + MOD) % MOD;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line">Hash_Table &lt;<span class="hljs-number">23</span>, (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)<span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>&gt; H1;</span><br><span class="line">Hash_Table &lt;<span class="hljs-number">31</span>, (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)<span class="hljs-number">1e9</span> + <span class="hljs-number">9</span>&gt; H2;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">same</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l1, <span class="hljs-keyword">int</span> r1, <span class="hljs-keyword">int</span> l2, <span class="hljs-keyword">int</span> r2)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">return</span> (r1 - l1 + <span class="hljs-number">1</span> == r2 - l2 + <span class="hljs-number">1</span>) &amp;&amp; H1.get_val(l1, r1) == H1.get_val(l2, r2) &amp;&amp; H2.get_val(l1, r1) == H2.get_val(l2, r2);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> pre[maxn], nex[maxn], ans;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> s[], <span class="hljs-keyword">int</span> Start, <span class="hljs-keyword">int</span> End, <span class="hljs-keyword">int</span> val)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	<span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">"%s: %d\t%d\t%d\n"</span>, s==pre?<span class="hljs-string">"pre"</span>:<span class="hljs-string">"nex"</span>,Start, End, val);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	s[Start] += val;</span><br><span class="line">	s[End+<span class="hljs-number">1</span>] += -val;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) pre[i] += pre[i<span class="hljs-number">-1</span>];</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) nex[i] += nex[i<span class="hljs-number">-1</span>];</span><br><span class="line">	ans = <span class="hljs-number">0</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n<span class="hljs-number">-1</span>) ans += pre[i] * nex[i+<span class="hljs-number">1</span>];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"1117.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"1117.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"1117.err"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stderr</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-keyword">int</span> T = read&lt;<span class="hljs-keyword">int</span>&gt;();</span><br><span class="line">	<span class="hljs-keyword">while</span> (T--)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, s + <span class="hljs-number">1</span>);</span><br><span class="line">		n = <span class="hljs-built_in">strlen</span>(s + <span class="hljs-number">1</span>);</span><br><span class="line">		H1.calc();H2.calc();</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) pre[i] = nex[i] = <span class="hljs-number">0</span>;</span><br><span class="line">		REP(L, <span class="hljs-number">1</span>, n)</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i * L &lt;= n; i++)</span><br><span class="line">				<span class="hljs-keyword">if</span> (s[(i<span class="hljs-number">-1</span>) * L] == s[i * L])</span><br><span class="line">				{</span><br><span class="line">					<span class="hljs-keyword">int</span> pos1 = (i<span class="hljs-number">-1</span>) * L, pos2 = i * L, l, r, head(pos1), tail(pos2), Start, End;</span><br><span class="line">					l = max(<span class="hljs-number">1</span>, pos1 - L + <span class="hljs-number">1</span>), r = pos1;</span><br><span class="line">					<span class="hljs-keyword">while</span> (l &lt;= r)</span><br><span class="line">					{</span><br><span class="line">						<span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;</span><br><span class="line">						<span class="hljs-keyword">if</span> (same(mid, pos1, pos2 - (pos1 - mid), pos2))</span><br><span class="line">						{</span><br><span class="line">							head = mid;</span><br><span class="line">							r = mid - <span class="hljs-number">1</span>;</span><br><span class="line">						}</span><br><span class="line">						<span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;</span><br><span class="line">					}</span><br><span class="line">					l = pos2, r = min(n, pos2 + L - <span class="hljs-number">1</span>);</span><br><span class="line">					<span class="hljs-keyword">while</span> (l &lt;= r)</span><br><span class="line">					{</span><br><span class="line">						<span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;</span><br><span class="line">						<span class="hljs-keyword">if</span> (same(pos2, mid, pos1, pos1 + (mid - pos2)))</span><br><span class="line">						{</span><br><span class="line">							tail = mid;</span><br><span class="line">							l = mid + <span class="hljs-number">1</span>;</span><br><span class="line">						}</span><br><span class="line">						<span class="hljs-keyword">else</span> r = mid - <span class="hljs-number">1</span>;</span><br><span class="line">					}</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">					<span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">"%d %d %d %d %d\n"</span>, L, pos1, pos2, head, tail);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">					Start = head, End = tail - L * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;</span><br><span class="line">					<span class="hljs-keyword">if</span> (Start &lt;= End) add(nex, Start, End, <span class="hljs-number">1</span>);</span><br><span class="line">					Start = head + L * <span class="hljs-number">2</span> - <span class="hljs-number">1</span>, End = tail;</span><br><span class="line">					<span class="hljs-keyword">if</span> (Start &lt;= End) add(pre, Start, End, <span class="hljs-number">1</span>);</span><br><span class="line">				}</span><br><span class="line">		calc();</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">"%lld%c"</span>, pre[i], i == n ? <span class="hljs-string">'\n'</span> : <span class="hljs-string">' '</span>);</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">"%lld%c"</span>, nex[i], i == n ? <span class="hljs-string">'\n'</span> : <span class="hljs-string">' '</span>);</span><br><span class="line">		<span class="hljs-keyword">int</span> pos1 = <span class="hljs-number">3</span>, pos2 = <span class="hljs-number">6</span>, mid = <span class="hljs-number">8</span>;</span><br><span class="line">		<span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"judge: "</span> &lt;&lt; same(pos2, mid, pos1 - (mid - pos2), pos1)&lt;&lt;<span class="hljs-built_in">endl</span>;</span><br><span class="line">		<span class="hljs-built_in">fputs</span>(<span class="hljs-string">"==========\n"</span>, <span class="hljs-built_in">stderr</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>, ans);</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h1><p>为什么我说是个假解呢。</p>
+<p>因为二分那个步骤完全可以$SA+ST$来$\mathcal O(1)$解决，我有一个$log$。</p>
+<p>那这个复杂度其实是不太对的，但是数据小啊QAQ。</p>
+<p>到时候在补吧。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/20/胡闹-序列/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Hash/">Hash</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>, <a class="has-link-grey -link" href="/tags/技巧/">技巧</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -184,65 +204,70 @@
 
 
 
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-30T00:07:28.000Z">2019-03-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/题解/合集/">合集</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1213 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
             
-                <a class="has-link-black-ter" href="/2019/03/30/合集-斜率优化/">合集 斜率优化</a>
-            
-        </h1>
-        <div class="content">
-            <p>昨天晚上肝了几道斜率优化的题，这里一起把题解写了吧。</p>
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Todo List</span>
+            </a>
         </div>
         
         
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/30/合集-斜率优化/#more">阅读更多</a>
-                </div>
-            </div>
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/01/模板-多项式求逆/">
+                <span class="level-item">模板 多项式求逆</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
 
-
-
-
-
-
+    </div>
+</div>
 
 </div>
                 
@@ -321,6 +346,33 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li><li>
+        <a class="is-flex" href="#Notice">
+        <span class="has-mr-6">4</span>
+        <span>Notice</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -909,7 +961,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="Luogu 1117 [NOI2016 优秀的拆分]" height="28">
                 
                 </a>
                 <p class="is-size-7">
