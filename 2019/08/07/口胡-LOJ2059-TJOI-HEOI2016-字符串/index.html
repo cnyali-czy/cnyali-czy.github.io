@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: 交互 - CraZYali's BLOG</title>
+<title>口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串] - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -124,33 +128,22 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">交互</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-28T14:51:27.000Z">2019-07-28</time>
+                <time class="level-item has-text-grey" datetime="2019-08-07T15:32:44.000Z">2019-08-07</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                <a class="has-link-grey -link" href="/categories/题解（口胡）/">题解（口胡）</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 868 个字)
+                    1 分钟 读完 (大约 185 个字)
                 </span>
                 
                 
@@ -159,34 +152,30 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/28/胡闹-交互程序/">胡闹 交互程序</a>
+                口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]
             
         </h1>
         <div class="content">
-            <p>毒瘤交互。</p>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$N$个盒子，第$i$个盒子里面有$p_i$个球，从一个盒子中只能拿一个球出来。求恰好拿出来$M$个球的方案数，对$998244353$取模。</p>
-<p>你不知道$pi​$的具体的值，只能指定操作。</p>
-<p>具体来说，你有一个长度为$T$的整型数组$A$，其中前$N$个位置初始存的是$p_1,p_2,⋯,p_N$。其余位置的初始值由你通过<code>Set</code>操作来决定。</p>
-<p>在决定完初始值之后，你就只能指定操作了。你只能提出：</p>
-<ol>
-<li>$A_i=A_j+A_k$</li>
-<li>$A_i=A_j−A_k$</li>
-<li>$A_i=A_j\times A_k$（所有运算均在模$998244353$意义下）</li>
-<li>过程中不允许你修改前$N$个位置的值。</li>
-<li>过程中不允许使用<code>Set</code>操作赋值。</li>
-</ol>
-<p>你还需要指出$A$中的哪一个数是答案。</p>
-<h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>$1\le M\le N\le 1000,T=1004$</p>
+            <p><a href="https://loj.ac/problem/2059" target="_blank" rel="noopener">传送门</a></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个长度为$n\le100000$的字符串S，$m\le100000$次询问$S[a:b]$的所有子串和$S[c:d]$的所有字串中的最长的LCP的长度。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>考虑二分答案$L$。</p>
+<p>则问题变为有多少个起始位置在$[a, b − L + 1]$之间$i$，满足$L\le LCP(S[i : n], S[c : n])$。</p>
+<p>这个把后缀数组搞出来，然后和某个后缀的$LCP ≥ L$的范围是一段区间，可以$ST$表。</p>
+<p>接下来的问题变为在后缀数组的某个区间$[l, r]$中，是否存在一个介于$[a, b − L + 1]$之间的数字。主席树即可。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/28/胡闹-交互程序/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/SAM/">SAM</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -194,12 +183,70 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Todo List</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/07/BZOJ1951-SDOI2010-古代猪文/">
+                <span class="level-item">BZOJ1951 [SDOI2010 古代猪文]</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
+    </div>
+</div>
 
 </div>
                 
@@ -278,6 +325,25 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -873,7 +939,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]" height="28">
                 
                 </a>
                 <p class="is-size-7">
