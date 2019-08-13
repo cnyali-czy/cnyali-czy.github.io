@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串] - CraZYali's BLOG</title>
+<title>ARC 093 F - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]" height="28">
+                <img src="/images/logo.png" alt="ARC 093 F" height="28">
             
             </a>
         </div>
@@ -133,17 +133,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-07T15:32:44.000Z">2019-08-07</time>
+                <time class="level-item has-text-grey" datetime="2019-08-13T04:08:53.000Z">2019-08-13</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/题解（口胡）/">题解（口胡）</a>
+                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 185 个字)
+                    3 分钟 读完 (大约 521 个字)
                 </span>
                 
                 
@@ -152,18 +152,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]
+                ARC 093 F
             
         </h1>
         <div class="content">
-            <p><a href="https://loj.ac/problem/2059" target="_blank" rel="noopener">传送门</a></p>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个长度为$n\le100000$的字符串S，$m\le100000$次询问$S[a:b]$的所有子串和$S[c:d]$的所有字串中的最长的LCP的长度。</p>
+            <p><a href="https://atcoder.jp/contests/arc093/tasks/arc093_d" target="_blank" rel="noopener">传送门</a></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$2^{n\le16}$名选手，编号为$1$至$2^n$。现在这$2^n$名选手将进行$n$轮淘汰赛，决出胜者。</p>
+<p>若$x&lt;y$，则$x$能够战胜$y$。但有$m\le16$个例外，$1$号选手会输给这$m$个选手。</p>
+<p>问有多少种选手的排列方式使得$1$号选手取得胜利。</p>
 <a id="more"></a>
 
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>考虑二分答案$L$。</p>
-<p>则问题变为有多少个起始位置在$[a, b − L + 1]$之间$i$，满足$L\le LCP(S[i : n], S[c : n])$。</p>
-<p>这个把后缀数组搞出来，然后和某个后缀的$LCP ≥ L$的范围是一段区间，可以$ST$表。</p>
-<p>接下来的问题变为在后缀数组的某个区间$[l, r]$中，是否存在一个介于$[a, b − L + 1]$之间的数字。主席树即可。</p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>假设选手的排列是$p$，我们考虑$1$会和哪些选手打。</p>
+<p>显然，他会先和$p_2$打，然后和$min{p_3,p_4}$打，然后和$min{p_5,p_6,p_7,p_8}$打，也就是会和$S_{k\in[1,n]}={p_{2^{k-1}+1},…,p_{2^k}}$打。</p>
+<p>那么显然方案数等于上述$n$个集合中每个集合的最小值都不是给定的$m$个人的方案数。</p>
+<p>考虑容斥。钦定哪些块的最小值一定是给定的$m$个人，那么就可以状压一下。设方案数为$f(S)$，那么答案就是$\sum (-1)^{|S|}f(S)$。</p>
+<p>怎么求$f(S)$？这个就可以状压dp一下了。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (int i = s; i &gt;= e; i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>, maxn = <span class="hljs-number">20</span>, maxN = <span class="hljs-number">1</span> &lt;&lt; maxn;</span><br><span class="line"><span class="hljs-keyword">int</span> bin[maxn], fac[maxN], inv[maxN], Inv[maxN];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m)</span> </span>{<span class="hljs-keyword">return</span> n &lt; m ? <span class="hljs-number">0</span> : <span class="hljs-number">1l</span>l * fac[n] * Inv[m] % MOD * Inv[n-m] % MOD;}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m;</span><br><span class="line"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans;</span><br><span class="line"><span class="hljs-keyword">int</span> a[maxn], dp[maxn][maxN], cnt[maxN];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">power_pow</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> base, <span class="hljs-keyword">int</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ans</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;</span><br><span class="line">	<span class="hljs-keyword">while</span>(b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) (ans *= base) %= MOD;</span><br><span class="line">		(base *= base) %= MOD;</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> (ans + MOD) % MOD;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"F.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"F.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	cnt[<span class="hljs-number">0</span>] = fac[<span class="hljs-number">0</span>] = bin[<span class="hljs-number">0</span>] = Inv[<span class="hljs-number">0</span>] = inv[<span class="hljs-number">0</span>] = inv[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) bin[i] = bin[i<span class="hljs-number">-1</span>]&lt;&lt;<span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, bin[n]) fac[i] = <span class="hljs-number">1l</span>l * fac[i<span class="hljs-number">-1</span>] * i%MOD;</span><br><span class="line">	Inv[bin[n]] = power_pow(fac[bin[n]], MOD - <span class="hljs-number">2</span>);</span><br><span class="line">	DREP(i, bin[n]<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>) Inv[i] = <span class="hljs-number">1l</span>l * Inv[i+<span class="hljs-number">1</span>] * (i+<span class="hljs-number">1</span>) % MOD;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, bin[n]) inv[i] = <span class="hljs-number">1l</span>l * Inv[i] * fac[i<span class="hljs-number">-1</span>] % MOD;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, bin[n]) cnt[i] = (i&amp;<span class="hljs-number">1</span>) ? MOD - cnt[i&gt;&gt;<span class="hljs-number">1</span>]:cnt[i&gt;&gt;<span class="hljs-number">1</span>];</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, m) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, a + i);</span><br><span class="line">	sort(a + <span class="hljs-number">1</span>, a + <span class="hljs-number">1</span> + m);</span><br><span class="line">	dp[m+<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	DREP(i, m, <span class="hljs-number">1</span>)</span><br><span class="line">		REP(S, <span class="hljs-number">0</span>, bin[n]<span class="hljs-number">-1</span>)</span><br><span class="line">			<span class="hljs-keyword">if</span>(dp[i+<span class="hljs-number">1</span>][S])</span><br><span class="line">			{</span><br><span class="line">				(dp[i][S] += dp[i+<span class="hljs-number">1</span>][S]) %= MOD;</span><br><span class="line">				<span class="hljs-keyword">int</span> p = bin[n] - S - <span class="hljs-number">1</span>;</span><br><span class="line">				REP(j, <span class="hljs-number">0</span>, n)</span><br><span class="line">					<span class="hljs-keyword">if</span>(!(S &amp; (<span class="hljs-number">1</span>&lt;&lt;j)))</span><br><span class="line">						(dp[i][S | (<span class="hljs-number">1</span>&lt;&lt;j)] += <span class="hljs-number">1l</span>l * C(p - a[i] + <span class="hljs-number">1</span>, (<span class="hljs-number">1</span>&lt;&lt;j) - <span class="hljs-number">1</span>) * dp[i+<span class="hljs-number">1</span>][S] % MOD * fac[<span class="hljs-number">1</span>&lt;&lt;j] % MOD) %= MOD;</span><br><span class="line">			}</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, bin[n]<span class="hljs-number">-1</span>)</span><br><span class="line">		(ans += <span class="hljs-number">1l</span>l * dp[<span class="hljs-number">1</span>][i] * fac[bin[n]<span class="hljs-number">-1</span>-i] % MOD * cnt[i] % MOD) % MOD;</span><br><span class="line">	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>, (<span class="hljs-number">1l</span>l * ans * bin[n] % MOD + MOD) % MOD);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
 
         </div>
         
@@ -171,7 +176,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/SAM/">SAM</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>
+                    <a class="has-link-grey -link" href="/tags/容斥/">容斥</a>
                 </div>
             </div>
         </div>
@@ -208,16 +213,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/10/LOJ2189-SHOI2014-神奇化合物/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">LOJ2189 [SHOI2014 神奇化合物]</span>
+                <span class="level-item">Todo List</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/07/BZOJ1951-SDOI2010-古代猪文/">
-                <span class="level-item">BZOJ1951 [SDOI2010 古代猪文]</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/12/BZOJ5336-TJOI2018-party/">
+                <span class="level-item">BZOJ5336 [TJOI2018 party]</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -339,6 +344,10 @@
         <a class="is-flex" href="#解析">
         <span class="has-mr-6">2</span>
         <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
         </a></li></ul>
         </div>
     </div>
@@ -939,7 +948,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="口胡 LOJ2059 [TJOI &amp; HEOI2016 字符串]" height="28">
+                    <img src="/images/logo.png" alt="ARC 093 F" height="28">
                 
                 </a>
                 <p class="is-size-7">
