@@ -143,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 639 个字)
+                    4 分钟 读完 (大约 636 个字)
                 </span>
                 
                 
@@ -173,10 +173,10 @@
 <li><code>__gnu_pbds::gp_hash_table&lt;int, int&gt;</code></li>
 </ol>
 <p><strong>但是如果你<del>傻逼如我（不可能）</del>用了这种东西</strong>：<code>map&lt;int, int&gt;</code></p>
-<p>那么恭喜你，获得一个$log$的$debuff​$并且挂成暴力。</p>
+<p>那么恭喜你，获得一个$log$的$debuff$并且挂成暴力。</p>
 <h1 id="正确的复杂度"><a href="#正确的复杂度" class="headerlink" title="正确的复杂度"></a>正确的复杂度</h1><p>这看上去是一个容斥。</p>
 <p>然后我们考虑怎么个容斥法。</p>
-<p>对于形如$n=4k+1​$的数的话，我们推一推式子：<br>$$<br>\begin{align}<br>2\times(x_1 + x_3 + · · · + x_{2k−1}) + x_{2k+1} &amp;= 2 \times (x_2 + x_4 + · · · + x_{2k})\\<br>x_2+x_4+· · ·+x_{2k}+(9−x_1)+(9−x_2)+· · ·+(9−x_{2k−1})&amp;=9k+\frac{x_{2k+1}}{2}<br>\end{align}<br>$$<br>那么我们考虑枚举一下$\frac{x_{2k+1}}{2}​$，这就变成了一个容斥然后隔板法（别问我为什么，WO YE BU HUI）。</p>
+<p>对于形如$n=4k+1$的数的话，我们推一推式子：<br>$$<br>\begin{align}<br>2\times(x_1 + x_3 + · · · + x_{2k−1}) + x_{2k+1} &amp;= 2 \times (x_2 + x_4 + · · · + x_{2k})\\<br>x_2+x_4+· · ·+x_{2k}+(9−x_1)+(9−x_2)+· · ·+(9−x_{2k−1})&amp;=9k+\frac{x_{2k+1}}{2}<br>\end{align}<br>$$<br>那么我们考虑枚举一下$\frac{x_{2k+1}}{2}$，这就变成了一个容斥然后隔板法（别问我为什么，WO YE BU HUI）。</p>
 <p>对于形如$n=4k+3$的样子，多考虑一个数就可以了（WO YE BU HUI）</p>
 <h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (register int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (register int i = s; i &gt;= e; i--)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e7</span> + <span class="hljs-number">10</span>, MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">power_pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	int ans(1), base(a);</span><br><span class="line">	<span class="hljs-keyword">while</span> (b)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) ans = ans * base % MOD;</span><br><span class="line">		base = base * base % MOD;</span><br><span class="line">		b &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> (ans + MOD) % MOD;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inv(x) power_pow(x, MOD - 2)</span></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-keyword">int</span> fac[maxn], Inv[maxn];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m)</span> </span>{<span class="hljs-keyword">return</span> n &lt; m || m &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">0</span> : fac[n] * Inv[n-m] % MOD * Inv[m] % MOD;}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> S, <span class="hljs-keyword">int</span> n)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	int res(0), cur(-1);</span><br><span class="line">	REP(i, <span class="hljs-number">0</span>, n) res += (cur *= <span class="hljs-number">-1</span>) * C(n, i) * C(S - i * <span class="hljs-number">10</span> + n - <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span>) % MOD, res %= MOD;</span><br><span class="line">	<span class="hljs-keyword">return</span> (res + MOD) % MOD;</span><br><span class="line">}</span><br><span class="line">__gnu_pbds::gp_hash_table &lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; cnt;</span><br><span class="line">__gnu_pbds::gp_hash_table &lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; :: iterator it;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"B.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"B.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	Inv[<span class="hljs-number">0</span>] = fac[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, <span class="hljs-number">10000000</span>) fac[i] = fac[i<span class="hljs-number">-1</span>] * i % MOD;</span><br><span class="line">	Inv[<span class="hljs-number">10000000</span>] = inv(fac[<span class="hljs-number">10000000</span>]);</span><br><span class="line">	DREP(i, <span class="hljs-number">9999999</span>, <span class="hljs-number">1</span>) Inv[i] = Inv[i+<span class="hljs-number">1</span>] * (i+<span class="hljs-number">1</span>) % MOD;</span><br><span class="line">	<span class="hljs-keyword">int</span> T;<span class="hljs-built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="hljs-keyword">while</span> (T--)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>, &amp;n);</span><br><span class="line">		<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) ans = power_pow(<span class="hljs-number">10</span>, n &gt;&gt; <span class="hljs-number">1</span>);</span><br><span class="line">		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) ans = <span class="hljs-number">1</span>;</span><br><span class="line">		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n == <span class="hljs-number">3</span>) ans = <span class="hljs-number">5</span>;</span><br><span class="line">		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n % <span class="hljs-number">4</span> == <span class="hljs-number">1</span>) REP(i, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) ans += solve(i + <span class="hljs-number">9</span> * (n &gt;&gt; <span class="hljs-number">2</span>), n &gt;&gt; <span class="hljs-number">1</span>) % MOD, ans %= MOD;</span><br><span class="line">		<span class="hljs-keyword">else</span></span><br><span class="line">		{</span><br><span class="line">			cnt.clear();</span><br><span class="line">			REP(i, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) REP(j, <span class="hljs-number">0</span>, <span class="hljs-number">9</span>) cnt[i-j]++;</span><br><span class="line">			<span class="hljs-keyword">for</span> (it = cnt.begin(); it != cnt.end(); it++)</span><br><span class="line">				ans += solve(it -&gt; first + <span class="hljs-number">9</span> * (n &gt;&gt; <span class="hljs-number">2</span>), (n &gt;&gt; <span class="hljs-number">1</span>) - <span class="hljs-number">1</span>) * it -&gt; second % MOD, ans %= MOD;</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>, ans);</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
@@ -187,7 +187,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/WO-YE-BU-HUI/">WO YE BU HUI</a>, <a class="has-link-grey -link" href="/tags/毒瘤计数/">毒瘤计数</a>
+                    <a class="has-link-grey -link" href="/tags/WO-YE-BU-HUI/">WO YE BU HUI</a>, <a class="has-link-grey -link" href="/tags/毒瘤计数/">毒瘤计数</a>, <a class="has-link-grey -link" href="/tags/胡闹系列/">胡闹系列</a>
                 </div>
             </div>
         </div>
@@ -309,7 +309,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        45
+                        46
                     </p>
                 </div>
             </div>
@@ -329,7 +329,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        36
+                        34
                     </p>
                 </div>
             </div>
@@ -464,9 +464,17 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">35</span>
+                <span class="level-item tag">39</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/题解/口胡/">
+            <span class="level-start">
+                <span class="level-item">口胡</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/题解/合集/">
             <span class="level-start">
                 <span class="level-item">合集</span>
@@ -474,15 +482,7 @@
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/题解（口胡）/">
-            <span class="level-start">
-                <span class="level-item">题解（口胡）</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -494,7 +494,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 16.25px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 12.5px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/SAM/" style="font-size: 12.5px;">SAM</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 17.5px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 13.75px;">主席树</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.25px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡/" style="font-size: 10px;">口胡</a> <a href="/tags/口胡系列/" style="font-size: 11.25px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/坑/" style="font-size: 10px;">坑</a> <a href="/tags/多项式/" style="font-size: 10px;">多项式</a> <a href="/tags/套路/" style="font-size: 11.25px;">套路</a> <a href="/tags/字符串/" style="font-size: 18.75px;">字符串</a> <a href="/tags/容斥/" style="font-size: 11.25px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.25px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 16.25px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.25px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.25px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 10px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 15px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.25px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.25px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.75px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.25px;">黑科技</a>
+        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 16.25px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 12.5px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/SAM/" style="font-size: 12.5px;">SAM</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 17.5px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 13.75px;">主席树</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.25px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡系列/" style="font-size: 10px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/多项式/" style="font-size: 10px;">多项式</a> <a href="/tags/套路/" style="font-size: 11.25px;">套路</a> <a href="/tags/字符串/" style="font-size: 18.75px;">字符串</a> <a href="/tags/容斥/" style="font-size: 11.25px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/带修莫队/" style="font-size: 11.25px;">带修莫队</a> <a href="/tags/平衡树/" style="font-size: 11.25px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 15px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.25px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.25px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 11.25px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 15px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.25px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.25px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.75px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.25px;">黑科技</a>
     </div>
 </div>
 
@@ -520,6 +520,25 @@
                     <a href="/6667/12/03/Todo-List/" class="has-link-black-ter is-size-6">Todo List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/杂项/">杂项</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/胡闹-方差/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="胡闹 方差">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T15:08:21.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/胡闹-方差/" class="has-link-black-ter is-size-6">胡闹 方差</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
                     </p>
                 </div>
             </div>
@@ -582,25 +601,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/10/LOJ2189-SHOI2014-神奇化合物/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LOJ2189 [SHOI2014 神奇化合物]">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-09T16:19:31.000Z">2019-08-10</time></div>
-                    <a href="/2019/08/10/LOJ2189-SHOI2014-神奇化合物/" class="has-link-black-ter is-size-6">LOJ2189 [SHOI2014 神奇化合物]</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -633,7 +633,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -780,29 +780,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/口胡/">
-                        <span class="tag">口胡</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/口胡系列/">
                         <span class="tag">口胡系列</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/可并堆/">
                         <span class="tag">可并堆</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/坑/">
-                        <span class="tag">坑</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -843,6 +829,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/带修莫队/">
+                        <span class="tag">带修莫队</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/平衡树/">
                         <span class="tag">平衡树</span>
                         <span class="tag is-grey">2</span>
@@ -852,7 +845,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/技巧/">
                         <span class="tag">技巧</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -873,7 +866,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/树上莫队/">
                         <span class="tag">树上莫队</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -906,16 +899,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/胡闹/">
-                        <span class="tag">胡闹</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/胡闹系列/">
                         <span class="tag">胡闹系列</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 

@@ -143,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 487 个字)
+                    3 分钟 读完 (大约 486 个字)
                 </span>
                 
                 
@@ -165,7 +165,7 @@
 <p>一个套路，我们注意到$0\le a_i$并且$\sum a_i\le10^7$，那么我们知道$a_i$的取值一定是$O(\sqrt{10^7})$的？</p>
 <p>为什么呢？考虑抽屉原理。从$0$开始，放$1,2,3,4…$，那么放了$n$个的时候，必然有$\sum a_i\ge\frac{n\times(n-1)}{2}$。</p>
 <p>所以$a_i$取值一定是$O(\sqrt{10^7})$的。</p>
-<p>我们又注意到，$\lfloor\sqrt{|a_i-b_j|}\rfloor\le \sqrt{10^7}​$。</p>
+<p>我们又注意到，$\lfloor\sqrt{|a_i-b_j|}\rfloor\le \sqrt{10^7}$。</p>
 <p>那么就很简单了，枚举$a$中每一个出现的数，然后枚举$\lfloor\sqrt{|a_i-b_j|}\rfloor$，$b$中合法的数一定是在两个区间内，统计的话直接及一个前缀和就好了。</p>
 <h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REP(i, s, e) for (int i = s; i &lt;= e ;i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = min(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> double long double</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e6</span> + <span class="hljs-number">10</span>, maxL = <span class="hljs-number">4200000</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, ans, a[maxn], b[maxn], cnt[<span class="hljs-number">3000005</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> s[<span class="hljs-number">3000005</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">	freopen(<span class="hljs-string">"A.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"A.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>, a + i), a[i]++;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>, b + i), b[i]++;</span><br><span class="line">	<span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">2000</span>)</span><br><span class="line">	{</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">			REP(j, <span class="hljs-number">1</span>, n) </span><br><span class="line">			ans += <span class="hljs-built_in">floor</span>(<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">abs</span>(a[i] - b[j])));</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-keyword">else</span></span><br><span class="line">	{</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) cnt[a[i]]++;</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n) s[b[i]]++;</span><br><span class="line">		REP(i,<span class="hljs-number">1</span>,<span class="hljs-number">3000001</span>)s[i]+=s[i<span class="hljs-number">-1</span>];</span><br><span class="line">		REP(A, <span class="hljs-number">1</span>, <span class="hljs-number">3000001</span>)</span><br><span class="line">			<span class="hljs-keyword">if</span> (cnt[A])</span><br><span class="line">				REP(C, <span class="hljs-number">1</span>, <span class="hljs-number">1732</span>)</span><br><span class="line">				{</span><br><span class="line">					<span class="hljs-keyword">int</span> l, r;</span><br><span class="line">					l = A - C * C - C * <span class="hljs-number">2</span>, r = A - C * C;</span><br><span class="line">					<span class="hljs-keyword">if</span> (max(l, <span class="hljs-number">1l</span>l) &lt;= min(r, <span class="hljs-number">3000001l</span>l))</span><br><span class="line">					{</span><br><span class="line">						chkmax(l, <span class="hljs-number">1l</span>l);chkmin(l, <span class="hljs-number">3000001l</span>l);</span><br><span class="line">						chkmax(r, <span class="hljs-number">1l</span>l);chkmin(r, <span class="hljs-number">3000001l</span>l);</span><br><span class="line">						ans += C * cnt[A] * (s[r] - s[l<span class="hljs-number">-1</span>]);</span><br><span class="line">					}</span><br><span class="line">					l = A + C * C, r = A + C * C + C * <span class="hljs-number">2</span>;</span><br><span class="line">					<span class="hljs-keyword">if</span> (max(l, <span class="hljs-number">1l</span>l) &lt;= min(r, <span class="hljs-number">3000001l</span>l))</span><br><span class="line">					{</span><br><span class="line">						chkmax(l, <span class="hljs-number">1l</span>l);chkmin(l, <span class="hljs-number">3000001l</span>l);</span><br><span class="line">						chkmax(r, <span class="hljs-number">1l</span>l);chkmin(r, <span class="hljs-number">3000001l</span>l);</span><br><span class="line">						ans += C * cnt[A] * (s[r] - s[l<span class="hljs-number">-1</span>]);</span><br><span class="line">					}</span><br><span class="line">				}</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
@@ -176,7 +176,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/套路/">套路</a>, <a class="has-link-grey -link" href="/tags/胡闹/">胡闹</a>
+                    <a class="has-link-grey -link" href="/tags/套路/">套路</a>, <a class="has-link-grey -link" href="/tags/胡闹系列/">胡闹系列</a>
                 </div>
             </div>
         </div>
@@ -298,7 +298,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        45
+                        46
                     </p>
                 </div>
             </div>
@@ -318,7 +318,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        36
+                        34
                     </p>
                 </div>
             </div>
@@ -449,9 +449,17 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">35</span>
+                <span class="level-item tag">39</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/题解/口胡/">
+            <span class="level-start">
+                <span class="level-item">口胡</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/题解/合集/">
             <span class="level-start">
                 <span class="level-item">合集</span>
@@ -459,15 +467,7 @@
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/题解（口胡）/">
-            <span class="level-start">
-                <span class="level-item">题解（口胡）</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -479,7 +479,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 16.25px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 12.5px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/SAM/" style="font-size: 12.5px;">SAM</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 17.5px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 13.75px;">主席树</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.25px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡/" style="font-size: 10px;">口胡</a> <a href="/tags/口胡系列/" style="font-size: 11.25px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/坑/" style="font-size: 10px;">坑</a> <a href="/tags/多项式/" style="font-size: 10px;">多项式</a> <a href="/tags/套路/" style="font-size: 11.25px;">套路</a> <a href="/tags/字符串/" style="font-size: 18.75px;">字符串</a> <a href="/tags/容斥/" style="font-size: 11.25px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/平衡树/" style="font-size: 11.25px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 16.25px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.25px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.25px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 10px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 15px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.25px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹/" style="font-size: 10px;">胡闹</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.25px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.75px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.25px;">黑科技</a>
+        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 16.25px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 12.5px;">Hash</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/SAM/" style="font-size: 12.5px;">SAM</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 17.5px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 10px;">lct</a> <a href="/tags/主席树/" style="font-size: 13.75px;">主席树</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.25px;">倍增</a> <a href="/tags/卡常/" style="font-size: 10px;">卡常</a> <a href="/tags/口胡系列/" style="font-size: 10px;">口胡系列</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/多项式/" style="font-size: 10px;">多项式</a> <a href="/tags/套路/" style="font-size: 11.25px;">套路</a> <a href="/tags/字符串/" style="font-size: 18.75px;">字符串</a> <a href="/tags/容斥/" style="font-size: 11.25px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/带修莫队/" style="font-size: 11.25px;">带修莫队</a> <a href="/tags/平衡树/" style="font-size: 11.25px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 15px;">技巧</a> <a href="/tags/数论/" style="font-size: 11.25px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.25px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 11.25px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 15px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.25px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 10px;">网络流</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 11.25px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.75px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.25px;">黑科技</a>
     </div>
 </div>
 
@@ -505,6 +505,25 @@
                     <a href="/6667/12/03/Todo-List/" class="has-link-black-ter is-size-6">Todo List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/杂项/">杂项</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/胡闹-方差/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="胡闹 方差">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T15:08:21.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/胡闹-方差/" class="has-link-black-ter is-size-6">胡闹 方差</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
                     </p>
                 </div>
             </div>
@@ -567,25 +586,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/10/LOJ2189-SHOI2014-神奇化合物/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LOJ2189 [SHOI2014 神奇化合物]">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-09T16:19:31.000Z">2019-08-10</time></div>
-                    <a href="/2019/08/10/LOJ2189-SHOI2014-神奇化合物/" class="has-link-black-ter is-size-6">LOJ2189 [SHOI2014 神奇化合物]</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -618,7 +618,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -765,29 +765,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/口胡/">
-                        <span class="tag">口胡</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/口胡系列/">
                         <span class="tag">口胡系列</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/可并堆/">
                         <span class="tag">可并堆</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/坑/">
-                        <span class="tag">坑</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -828,6 +814,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/带修莫队/">
+                        <span class="tag">带修莫队</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/平衡树/">
                         <span class="tag">平衡树</span>
                         <span class="tag is-grey">2</span>
@@ -837,7 +830,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/技巧/">
                         <span class="tag">技巧</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -858,7 +851,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/树上莫队/">
                         <span class="tag">树上莫队</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -891,16 +884,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/胡闹/">
-                        <span class="tag">胡闹</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/胡闹系列/">
                         <span class="tag">胡闹系列</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
