@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: 可持久化 - CraZYali's BLOG</title>
+<title>BZOJ2331 [SDOI2011 地板] - CraZYali's BLOG</title>
 <style type="text/css">body {zoom:0.9;}</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                <img src="/images/logo.png" alt="BZOJ2331 [SDOI2011 地板]" height="28">
             
             </a>
         </div>
@@ -110,6 +110,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -124,23 +128,12 @@
         <div class="container" style="opacity: 0.85">
             <div class="columns">
                 <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">可持久化</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T12:34:02.000Z">2019-08-27</time>
+                <time class="level-item has-text-grey" datetime="2019-08-28T08:13:02.000Z">2019-08-28</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/题解/">题解</a>
@@ -150,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 580 个字)
+                    3 分钟 读完 (大约 475 个字)
                 </span>
                 
                 
@@ -159,22 +152,32 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/27/BZOJ4137-FJOI2015-火星商店问题/">BZOJ4137 [FJOI2015 火星商店问题]</a>
+                BZOJ2331 [SDOI2011 地板]
             
         </h1>
         <div class="content">
-            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4137" target="_blank" rel="noopener">传送门</a></p>
-<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>自己去看。</p>
+            <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2331" target="_blank" rel="noopener">传送门</a></p>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>求用<code>L</code>形地砖铺满$R\times C\le100$的网格图的方案数，不得有重叠、空缺。</p>
+<p><img src="https://www.lydsy.com/JudgeOnline/upload/201106/22.jpg" alt="`L`形地砖图示"></p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>看上去可以插头<code>dp</code>一下。</p>
+<p>维护$3$个插头，没拐弯、刚刚拐弯、拐弯了并且下来了。</p>
+<p>转移随便画画图。</p>
+<h1 id="Code-Copy"><a href="#Code-Copy" class="headerlink" title="Code(Copy)"></a>Code(Copy)</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (int i = s; i &gt;= e; i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = binn(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">100</span> + <span class="hljs-number">5</span>, maxm = <span class="hljs-number">180000</span> + <span class="hljs-number">10</span>, inf = <span class="hljs-number">1e9</span>, MOD = <span class="hljs-number">20110520</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, N;</span><br><span class="line"><span class="hljs-keyword">int</span> bin[<span class="hljs-number">25</span>];</span><br><span class="line"><span class="hljs-keyword">char</span> mp[maxn][maxn];</span><br><span class="line"><span class="hljs-keyword">int</span> f[maxm], g[maxm];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<span class="hljs-keyword">return</span> x / bin[y] % <span class="hljs-number">3</span>;}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span> </span>{<span class="hljs-keyword">return</span> x - w(x, y) * bin[y] + z * bin[y];}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"2331.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"2331.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	bin[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, <span class="hljs-number">20</span>) bin[i] = bin[i<span class="hljs-number">-1</span>] * <span class="hljs-number">3</span>;</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, mp[i] + <span class="hljs-number">1</span>);</span><br><span class="line">	<span class="hljs-keyword">if</span> (n &lt; m)</span><br><span class="line">	{</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">			REP(j, i, m) swap(mp[i][j], mp[j][i]);</span><br><span class="line">		swap(n, m);</span><br><span class="line">	}</span><br><span class="line">	f[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">	N = bin[m+<span class="hljs-number">1</span>];</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, n)</span><br><span class="line">	{</span><br><span class="line">		REP(j, <span class="hljs-number">1</span>, m)</span><br><span class="line">		{</span><br><span class="line">			<span class="hljs-built_in">memset</span>(g, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(g));</span><br><span class="line">			<span class="hljs-keyword">if</span> (mp[i][j] == <span class="hljs-string">'*'</span>)</span><br><span class="line">				REP(k, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>) g[k] += (!w(k, j<span class="hljs-number">-1</span>) &amp;&amp; !w(k, j)) * f[k];</span><br><span class="line">			<span class="hljs-keyword">else</span></span><br><span class="line">				REP(k, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>)</span><br><span class="line">				{</span><br><span class="line">					<span class="hljs-keyword">if</span> (!f[k]) <span class="hljs-keyword">continue</span> ;</span><br><span class="line">					int x(w(k, j-1)), y(w(k, j));</span><br><span class="line">					<span class="hljs-keyword">if</span> (!x)</span><br><span class="line">						<span class="hljs-keyword">if</span> (!y)</span><br><span class="line">						{</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">1</span>)] += f[k]) %= MOD;</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>), j, <span class="hljs-number">2</span>)] += f[k]) %= MOD;</span><br><span class="line">						}</span><br><span class="line">						<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (y == <span class="hljs-number">1</span>)</span><br><span class="line">						{</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">2</span>)] += f[k]) %= MOD;</span><br><span class="line">						}</span><br><span class="line">						<span class="hljs-keyword">else</span></span><br><span class="line">						{</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">						}</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span>)</span><br><span class="line">					{</span><br><span class="line">						<span class="hljs-keyword">if</span> (!y)</span><br><span class="line">						{</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">1</span>)] += f[k]) %= MOD;</span><br><span class="line">							(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">						}</span><br><span class="line">						<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (y == <span class="hljs-number">1</span>) (g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">					}</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!y)</span><br><span class="line">					{</span><br><span class="line">						(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">2</span>)] += f[k]) %= MOD;</span><br><span class="line">						(g[s(s(k, j<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), j, <span class="hljs-number">0</span>)] += f[k]) %= MOD;</span><br><span class="line">					}</span><br><span class="line">				}</span><br><span class="line">			copy(g, g + <span class="hljs-keyword">sizeof</span>(g) / <span class="hljs-keyword">sizeof</span>(g[<span class="hljs-number">0</span>]), f);</span><br><span class="line">		}</span><br><span class="line">		<span class="hljs-built_in">memset</span>(g, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(g));</span><br><span class="line">		REP(k, <span class="hljs-number">0</span>, bin[m] - <span class="hljs-number">1</span>) g[k*<span class="hljs-number">3</span>] = f[k];</span><br><span class="line">		copy(g, g + <span class="hljs-keyword">sizeof</span>(g) / <span class="hljs-keyword">sizeof</span>(g[<span class="hljs-number">0</span>]), f);</span><br><span class="line">	}</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; f[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/27/BZOJ4137-FJOI2015-火星商店问题/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/插头dp/">插头dp</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -182,12 +185,70 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/6667/12/03/Todo-List/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Todo List</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/27/BZOJ4137-FJOI2015-火星商店问题/">
+                <span class="level-item">BZOJ4137 [FJOI2015 火星商店问题]</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
+    </div>
+</div>
 
 </div>
                 
@@ -266,6 +327,29 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code-Copy">
+        <span class="has-mr-6">3</span>
+        <span>Code(Copy)</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -883,7 +967,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="CraZYali's BLOG" height="28">
+                    <img src="/images/logo.png" alt="BZOJ2331 [SDOI2011 地板]" height="28">
                 
                 </a>
                 <p class="is-size-7">
