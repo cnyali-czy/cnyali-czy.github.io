@@ -1,0 +1,1171 @@
+<!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Luogu 2444 [POI2000 病毒] - CraZYali's BLOG</title>
+<style type="text/css">body {zoom:0.9;}</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/code.png">
+
+
+
+
+
+
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+    
+    
+
+
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');loadCss('https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css');loadCss('https://cdnjs.loli.net/ajax/libs/font-awesome/5.4.1/css/all.min.css');loadCss('https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro');loadCss('https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css');loadCss('https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css');loadCss('https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css');loadCss('https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css');</script><noscript><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.4.1/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"></noscript></head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="Luogu 2444 [POI2000 病毒]" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container" style="opacity: 0.85">
+            <div class="columns">
+                <div class="column my-content is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-02T02:45:07.000Z">2019-04-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 519 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Luogu 2444 [POI2000 病毒]
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://www.luogu.org/problemnew/show/P2444" target="_blank" rel="noopener">传送门</a><br>这题目很好骗分啊。</p>
+<hr>
+<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有一些由$0,1$构成的病毒代码，询问存不存在一个无限长的$01$代码不包含病毒代码。</p>
+<a id="more"></a>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>建一个AC自动机出来。<br>考虑一个普通的文本串匹配的情况，如果匹配不上的话就不会包含病毒代码。<br>但是文本串是无限长的，那匹配不上就只能是指针在AC自动机上面的一个环上循环。<br>所以我们知道存不存在一个不包含<code>危险结点</code>的环就可以啦。<br><code>危险结点</code>就是可以匹配上的结点，那么显然所有fail指向<code>危险结点</code>的结点和Trie上有结束标记的结点都是<code>危险结点</code>。<br>这里找环很好找，由于fail只会指向比当前节点深度浅的结点，所以直接一遍dfs就可以了。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  REP(i, s, e) for (int i = s; i &lt;= e; i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DREP(i, s, e) for (int i = s; i &gt;= e; i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG fprintf(stderr, <span class="hljs-meta-string">"Passing [%s] in Line %d\n"</span>, __FUNCTION__, __LINE__)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmax(a, b) a = max(a, b)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> chkmin(a, b) a = min(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">2000</span> + <span class="hljs-number">10</span>, maxlen = <span class="hljs-number">30000</span> + <span class="hljs-number">10</span>, sumS = maxlen;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> ch[sumS][<span class="hljs-number">3</span>], fail[sumS], rt, cur;</span><br><span class="line"><span class="hljs-keyword">bool</span> End[sumS];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">char</span> s[])</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">int</span> now = rt;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; s[i]; i++)</span><br><span class="line">		now = !ch[now][s[i]] ? ch[now][s[i]] = ++cur : ch[now][s[i]];</span><br><span class="line">	End[now] = <span class="hljs-number">1</span>;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">int</span> q[sumS], head, tail;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	head = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">if</span> (ch[<span class="hljs-number">0</span>][i]) q[++tail] = ch[<span class="hljs-number">0</span>][i];</span><br><span class="line">	<span class="hljs-keyword">while</span> (head &lt;= tail)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-keyword">int</span> x = q[head++];</span><br><span class="line">		<span class="hljs-keyword">if</span> (End[fail[x]]) End[x] = <span class="hljs-number">1</span>;</span><br><span class="line">		REP(i, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</span><br><span class="line">			<span class="hljs-keyword">if</span> (ch[x][i]) fail[q[++tail] = ch[x][i]] = ch[fail[x]][i];</span><br><span class="line">			<span class="hljs-keyword">else</span> ch[x][i] = ch[fail[x]][i];</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">bool</span> vis[sumS], ins[sumS];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x = rt)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-keyword">if</span> (ins[x]) {<span class="hljs-built_in">puts</span>(<span class="hljs-string">"TAK"</span>);<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);}</span><br><span class="line">	<span class="hljs-keyword">if</span> (vis[x] || End[x]) <span class="hljs-keyword">return</span>;</span><br><span class="line">	vis[x] = ins[x] = <span class="hljs-number">1</span>;</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">if</span> (ch[x][i]) dfs(ch[x][i]);</span><br><span class="line">	ins[x] = <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-keyword">char</span> s[maxlen];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	freopen(<span class="hljs-string">"2444.in"</span>, <span class="hljs-string">"r"</span>, <span class="hljs-built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="hljs-string">"2444.out"</span>, <span class="hljs-string">"w"</span>, <span class="hljs-built_in">stdout</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="hljs-keyword">while</span> (n--)</span><br><span class="line">	{</span><br><span class="line">		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, s + <span class="hljs-number">1</span>);</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; s[i]; i++) s[i] -= <span class="hljs-string">'0'</span><span class="hljs-number">-1</span>;</span><br><span class="line">		insert(s);</span><br><span class="line">	}</span><br><span class="line">	build();</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> CraZYali</span></span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, cur) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d%c"</span>, (<span class="hljs-keyword">int</span>)fail[i], i == cur ? <span class="hljs-string">'\n'</span> : <span class="hljs-string">' '</span>);</span><br><span class="line">	REP(i, <span class="hljs-number">1</span>, cur) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d%c"</span>, (<span class="hljs-keyword">int</span>)End[i], i == cur ? <span class="hljs-string">'\n'</span> : <span class="hljs-string">' '</span>);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line">	dfs();</span><br><span class="line">	<span class="hljs-built_in">puts</span>(<span class="hljs-string">"NIE"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/AC自动机/">AC自动机</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/02/Luogu-4197-ONTAK2010-Peaks/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Luogu 4197 [ONTAK2010 Peaks]</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/30/合集-斜率优化/">
+                <span class="level-item">合集 斜率优化</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'VFtdXLwk42r8fYLAcF5DPUaz-gzGzoHsz',
+        app_key: 'uL3R2wcH5Wglj1K1GgJwq9cv',
+        placeholder: '这个博主写的什么🌶🐔玩意，嘲讽他一波。'
+    });
+</script>
+
+    </div>
+</div>
+
+</div>
+                
+
+
+
+
+<div class="column my-sitebar is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="CraZYali">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        CraZYali
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        MY WARM BLOG
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>DATA DELETED</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        58
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        38
+                    </p>
+                </div>
+            </div>
+        </nav>
+        
+        
+    </div>
+</div>
+
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目大意">
+        <span class="has-mr-6">1</span>
+        <span>题目大意</span>
+        </a></li><li>
+        <a class="is-flex" href="#解析">
+        <span class="has-mr-6">2</span>
+        <span>解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#Code">
+        <span class="has-mr-6">3</span>
+        <span>Code</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://qaq-am.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">老K's BLOG</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">qaq-am.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.luogu.org" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">LUOGU</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.luogu.org</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.lydsy.com/JudgeOnline" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">BZOJ</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.lydsy.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://huhaoo.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">huhaoo's BLOG</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">huhaoo.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/合集/">
+            <span class="level-start">
+                <span class="level-item">合集</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/杂项/">
+            <span class="level-start">
+                <span class="level-item">杂项</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/模板/">
+            <span class="level-start">
+                <span class="level-item">模板</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/题解/">
+            <span class="level-start">
+                <span class="level-item">题解</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">50</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/题解/口胡/">
+            <span class="level-start">
+                <span class="level-item">口胡</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/题解/合集/">
+            <span class="level-start">
+                <span class="level-item">合集</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AC自动机/" style="font-size: 10px;">AC自动机</a> <a href="/tags/FFT、NTT/" style="font-size: 15.56px;">FFT、NTT</a> <a href="/tags/Hash/" style="font-size: 12.22px;">Hash</a> <a href="/tags/K-D-Tree/" style="font-size: 10px;">K-D Tree</a> <a href="/tags/Kruskal重构树/" style="font-size: 10px;">Kruskal重构树</a> <a href="/tags/SAM/" style="font-size: 13.33px;">SAM</a> <a href="/tags/WO-YE-BU-HUI/" style="font-size: 16.67px;">WO YE BU HUI</a> <a href="/tags/excrt/" style="font-size: 10px;">excrt</a> <a href="/tags/lct/" style="font-size: 11.11px;">lct</a> <a href="/tags/主席树/" style="font-size: 13.33px;">主席树</a> <a href="/tags/二分图/" style="font-size: 11.11px;">二分图</a> <a href="/tags/交互/" style="font-size: 10px;">交互</a> <a href="/tags/倍增/" style="font-size: 11.11px;">倍增</a> <a href="/tags/卡常/" style="font-size: 11.11px;">卡常</a> <a href="/tags/可并堆/" style="font-size: 10px;">可并堆</a> <a href="/tags/可持久化/" style="font-size: 10px;">可持久化</a> <a href="/tags/坑/" style="font-size: 11.11px;">坑</a> <a href="/tags/多项式/" style="font-size: 10px;">多项式</a> <a href="/tags/套路/" style="font-size: 11.11px;">套路</a> <a href="/tags/字符串/" style="font-size: 17.78px;">字符串</a> <a href="/tags/容斥/" style="font-size: 11.11px;">容斥</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/带修莫队/" style="font-size: 11.11px;">带修莫队</a> <a href="/tags/平衡树/" style="font-size: 11.11px;">平衡树</a> <a href="/tags/技巧/" style="font-size: 14.44px;">技巧</a> <a href="/tags/插头dp/" style="font-size: 10px;">插头dp</a> <a href="/tags/数论/" style="font-size: 14.44px;">数论</a> <a href="/tags/斜率优化/" style="font-size: 11.11px;">斜率优化</a> <a href="/tags/树上莫队/" style="font-size: 11.11px;">树上莫队</a> <a href="/tags/树套树/" style="font-size: 14.44px;">树套树</a> <a href="/tags/毒瘤计数/" style="font-size: 11.11px;">毒瘤计数</a> <a href="/tags/生成函数/" style="font-size: 10px;">生成函数</a> <a href="/tags/网络流/" style="font-size: 13.33px;">网络流</a> <a href="/tags/胡闹系列/" style="font-size: 20px;">胡闹系列</a> <a href="/tags/莫比乌斯反演/" style="font-size: 12.22px;">莫比乌斯反演</a> <a href="/tags/计算几何/" style="font-size: 12.22px;">计算几何</a> <a href="/tags/高级数据结构/" style="font-size: 18.89px;">高级数据结构</a> <a href="/tags/黑科技/" style="font-size: 11.11px;">黑科技</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/6667/12/03/Todo-List/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Todo List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="6667-12-02T16:00:05.000Z">6667-12-03</time></div>
+                    <a href="/6667/12/03/Todo-List/" class="has-link-black-ter is-size-6">Todo List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/杂项/">杂项</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/GEDT-2C/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="GEDT 2C">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T15:25:04.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/GEDT-2C/" class="has-link-black-ter is-size-6">GEDT 2C</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/29/口胡-LOJ2001-SDOI2017-树点涂色/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="口胡 LOJ2001 [SDOI2017 树点涂色]">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-29T14:13:38.000Z">2019-08-29</time></div>
+                    <a href="/2019/08/29/口胡-LOJ2001-SDOI2017-树点涂色/" class="has-link-black-ter is-size-6">口胡 LOJ2001 [SDOI2017 树点涂色]</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a> / <a class="has-link-grey -link" href="/categories/题解/口胡/">口胡</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/28/BZOJ2331-SDOI2011-地板/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BZOJ2331 [SDOI2011 地板]">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T08:13:02.000Z">2019-08-28</time></div>
+                    <a href="/2019/08/28/BZOJ2331-SDOI2011-地板/" class="has-link-black-ter is-size-6">BZOJ2331 [SDOI2011 地板]</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/27/BZOJ4137-FJOI2015-火星商店问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BZOJ4137 [FJOI2015 火星商店问题]">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T12:34:02.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/BZOJ4137-FJOI2015-火星商店问题/" class="has-link-black-ter is-size-6">BZOJ4137 [FJOI2015 火星商店问题]</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/题解/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/6667/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 6667</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">20</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">25</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AC自动机/">
+                        <span class="tag">AC自动机</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FFT、NTT/">
+                        <span class="tag">FFT、NTT</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hash/">
+                        <span class="tag">Hash</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-D-Tree/">
+                        <span class="tag">K-D Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kruskal重构树/">
+                        <span class="tag">Kruskal重构树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SAM/">
+                        <span class="tag">SAM</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WO-YE-BU-HUI/">
+                        <span class="tag">WO YE BU HUI</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/excrt/">
+                        <span class="tag">excrt</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/lct/">
+                        <span class="tag">lct</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/主席树/">
+                        <span class="tag">主席树</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/二分图/">
+                        <span class="tag">二分图</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/交互/">
+                        <span class="tag">交互</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/倍增/">
+                        <span class="tag">倍增</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/卡常/">
+                        <span class="tag">卡常</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/可并堆/">
+                        <span class="tag">可并堆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/可持久化/">
+                        <span class="tag">可持久化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/坑/">
+                        <span class="tag">坑</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/多项式/">
+                        <span class="tag">多项式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/套路/">
+                        <span class="tag">套路</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/字符串/">
+                        <span class="tag">字符串</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/容斥/">
+                        <span class="tag">容斥</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/左偏树/">
+                        <span class="tag">左偏树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/带修莫队/">
+                        <span class="tag">带修莫队</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/平衡树/">
+                        <span class="tag">平衡树</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/技巧/">
+                        <span class="tag">技巧</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/插头dp/">
+                        <span class="tag">插头dp</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数论/">
+                        <span class="tag">数论</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/斜率优化/">
+                        <span class="tag">斜率优化</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/树上莫队/">
+                        <span class="tag">树上莫队</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/树套树/">
+                        <span class="tag">树套树</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/毒瘤计数/">
+                        <span class="tag">毒瘤计数</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生成函数/">
+                        <span class="tag">生成函数</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/网络流/">
+                        <span class="tag">网络流</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/胡闹系列/">
+                        <span class="tag">胡闹系列</span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/莫比乌斯反演/">
+                        <span class="tag">莫比乌斯反演</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/计算几何/">
+                        <span class="tag">计算几何</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/高级数据结构/">
+                        <span class="tag">高级数据结构</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/黑科技/">
+                        <span class="tag">黑科技</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+
+            </div>
+        </div>
+    </section>
+    <div style="opacity:0.85">
+<footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="Luogu 2444 [POI2000 病毒]" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                © 2019 CraZYali&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &amp; <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+                <p class="is-size-7">
+                    「<span id="hitokoto">██████</span>」--- <span id="hitokoto-from">[数据删除]</span>
+                </p>
+                <script>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('get', 'https://v1.hitokoto.cn/');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            var data = JSON.parse(xhr.responseText);
+                            document.getElementById('hitokoto').innerText = data.hitokoto;
+                            document.getElementById('hitokoto-from').innerText = data.from;
+                        }
+                    }
+                    xhr.send();
+				</script>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer=""></script>
+    <script src="/js/gallery.js" defer=""></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer=""></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer=""></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer=""></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer=""></script>
+    <script src="/js/clipboard.js" defer=""></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer=""></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer=""></script>
+
+
+    
+
+
+</body></html>
