@@ -1,3 +1,14 @@
+<style>
+body
+{
+    background-color:black;
+    background-image:url(https://s2.ax1x.com/2020/02/09/1f060J.jpg);
+    opacity:0.9;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+</style>
 Last Upd: Thu Mar 31 10:12:42 CST 2022
 
 ## 3.31
