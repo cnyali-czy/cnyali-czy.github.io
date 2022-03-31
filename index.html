@@ -205,7 +205,13 @@ yaml header settings
 	background-color: var(--code-bg-color);
 	border-radius: 0.4rem;
 }
-
+body
+{
+    font-family: Roboto,Noto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: white;
+    background-color: #fff;
+}
 /*
 headers settings
 */
@@ -214,6 +220,7 @@ headers settings
 	text-align: center;
 	text-shadow: 0.15rem 0.15rem 0.3rem rgb(187, 187, 187);
 }
+
 #write h2 {
 	font-size: 1.8rem;
 	margin-top: 1.8rem;
@@ -224,6 +231,8 @@ headers settings
 	padding-right: 1rem;
 	border-left: 0.5rem solid var(--h-border-color);
 	border-radius: 0.4rem;
+	color: #333333;
+	opacity:.8;
 }
 #write h3 {
 	font-size: 1.6rem;
@@ -455,6 +464,8 @@ selected texts settings
 #write ::selection {
 	background-color: var(--selection-bg-color);
 }
+
+
 
 
 </style>
