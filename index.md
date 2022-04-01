@@ -9,7 +9,7 @@ body
     background-attachment:fixed;
 }
 </style>
-Last Upd: Fri Apr  1 09:28:11 CST 2022
+Last Upd: Fri Apr  1 09:31:11 CST 2022
 
 ## 4.1
 
@@ -23,7 +23,7 @@ Last Upd: Fri Apr  1 09:28:11 CST 2022
 
 化学：
 
-生物：蓝本38讲考点一
+生物：蓝本38讲考点一，可以写点课时练（38）（只要完成发酵部分）
 
 
 
