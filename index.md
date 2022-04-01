@@ -9,7 +9,7 @@ body
     background-attachment:fixed;
 }
 </style>
-Last Upd: Fri Apr  1 09:31:11 CST 2022
+Last Upd: Fri Apr  1 11:50:11 CST 2022
 
 ## 4.1
 
@@ -21,7 +21,10 @@ Last Upd: Fri Apr  1 09:31:11 CST 2022
 
 物理：一张试卷
 
-化学：湖南师大附中（七）
+化学：
+
+-   湖南师大附中（七）
+-   看课件
 
 生物：蓝本38讲考点一，可以写点课时练（38）（只要完成发酵部分）
 
