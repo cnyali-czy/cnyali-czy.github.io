@@ -9,7 +9,7 @@ body
     background-attachment:fixed;
 }
 </style>
-Last Upd: Fri Apr  1 14:03:09 CST 2022
+Last Upd: Fri Apr  1 14:04:09 CST 2022
 
 ## 4.1
 
@@ -24,6 +24,7 @@ Last Upd: Fri Apr  1 14:03:09 CST 2022
 化学：
 
 -   湖南师大附中（七）
+-   T8（未完成的补做）
 -   看课件
 
 生物：
