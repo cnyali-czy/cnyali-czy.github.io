@@ -9,7 +9,7 @@ body
     background-attachment:fixed;
 }
 </style>
-Last Upd: Fri Apr  2 11:55:23 CST 2022
+Last Upd: Sat Apr  2 17:33:40 CST 2022                                                                                                      
 
 ## 4.2
 
@@ -24,9 +24,12 @@ Last Upd: Fri Apr  2 11:55:23 CST 2022
 -   题型专项满分测（文件P32实验抢分（一））
 -   专项测（一）物理学史与思维方法
 
-化学：
+化学：命题区间5  AB卷不写
 
 生物：
+
+-   蓝本除了固定化酶和血红蛋白全部写完
+-   一张试卷
 
 其他：督促kzp停卷
 
@@ -87,3 +90,4 @@ Last Upd: Fri Apr  2 11:55:23 CST 2022
 化学：命题区间4
 
 生物：大本38讲考点一（考向突破之前的内容）
+
