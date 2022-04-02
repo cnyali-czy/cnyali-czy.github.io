@@ -9,7 +9,21 @@ body
     background-attachment:fixed;
 }
 </style>
-Last Upd: Fri Apr  1 14:04:09 CST 2022
+Last Upd: Fri Apr  2 09:15:09 CST 2022
+
+## 4.2
+
+语文：
+
+数学：居家测试卷 四（今明两天）
+
+英语：
+
+物理：
+
+化学：
+
+生物：
 
 ## 4.1
 
@@ -23,7 +37,7 @@ Last Upd: Fri Apr  1 14:04:09 CST 2022
 
 化学：
 
--   湖南师大附中（七）
+-   湖南师大附中 七
 -   T8（未完成的补做）
 -   看课件
 
