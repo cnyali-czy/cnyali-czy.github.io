@@ -11,7 +11,7 @@ body
 
 # kzp别卷了
 
-Last Upd: Fri Apr  8 09:47:04 CST 2022
+Last Upd: Fri Apr  8 10:18:04 CST 2022
 
 ## 4.8
 
@@ -22,6 +22,9 @@ Last Upd: Fri Apr  8 09:47:04 CST 2022
 英语：
 
 物理：
+
+-   专项测（3）图像问题
+-   选择题保分测（1）
 
 化学：
 
