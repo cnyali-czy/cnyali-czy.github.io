@@ -11,7 +11,7 @@ body
 
 # kzp别卷了
 
-Last Upd: Fri Apr  8 08:07:04 CST 2022
+Last Upd: Fri Apr  8 09:47:04 CST 2022
 
 ## 4.8
 
@@ -25,7 +25,7 @@ Last Upd: Fri Apr  8 08:07:04 CST 2022
 
 化学：
 
-生物：
+生物：考点一 考点二
 
 ## 4.7
 
