@@ -9,6 +9,10 @@ body
 }
 </style>
 
+# 懒了，停更了（2022.4.9）
+
+---
+
 # kzp别卷了
 
 Last Upd: Fri Apr  8 15:32:04 CST 2022
